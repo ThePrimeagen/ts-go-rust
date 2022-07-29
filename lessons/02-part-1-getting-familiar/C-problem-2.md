@@ -29,7 +29,7 @@ cargo install cargo-edit
 <br />
 
 ## Again, Thank you Mr Santa
-Check out [Advent of Code](www.adventofcode.com) for yourself this year!
+Check out [Advent of Code](https://www.adventofcode.com) for yourself this year!
 
 <br />
 <br />

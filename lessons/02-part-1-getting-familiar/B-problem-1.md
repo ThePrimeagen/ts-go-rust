@@ -31,7 +31,7 @@ that are accomplishable.
 <br />
 
 ## Yes, Mr Santa himself gave me the thumbs up
-Check out [Advent of Code](www.adventofcode.com) for yourself this year!
+Check out [Advent of Code](https://www.adventofcode.com) for yourself this year!
 
 <br />
 
