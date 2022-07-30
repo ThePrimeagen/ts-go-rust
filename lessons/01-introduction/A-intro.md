@@ -22,6 +22,33 @@ Much excite!
 <br/>
 <br/>
 
+## NOTE TO THE COURSE WATCHERS
+I am writing this to you because there is going to be some things you need to
+know.  First off, i move pretty fast so the complete code is available at
+[Here](https://github.com/ThePrimeagen/ts-go-rust-projector).
+
+# BEFORE YOU READ THE CODE
+A very important note about the code.  It does contain the surprise at the end
+of the course that will help you understand rust's borrow checker.  So I would
+be careful just rushing in and checking out the code.  As there will be a
+slight difference in the code online due to a last minute refactoring.
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
 ## So why 3 languages
 The chance is that you want to learn rust or go and simple language tutorials
 just don't cut it for you.
