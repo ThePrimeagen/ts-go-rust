@@ -1,0 +1,222 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><title>TypeScript : CLI – Polyglot Programming - TS, Go, and Rust</title><meta name="description" content="This course is designed for those that want to expand their knowledge to other languages by building a tool within the new language, and not reading yet another language tutorial.  This will be a fast paced, high octain learning experience."/><meta name="og:description" content="This course is designed for those that want to expand their knowledge to other languages by building a tool within the new language, and not reading yet another language tutorial.  This will be a fast paced, high octain learning experience."/><meta name="og:title" content="TypeScript : CLI – Polyglot Programming - TS, Go, and Rust"/><meta name="og:image" content="/ts-go-rust/images/social-share-cover.jpg"/><meta name="twitter:card" content="summary_large_image"/><meta name="next-head-count" content="8"/><link rel="preload" href="/ts-go-rust/_next/static/css/dd3a156ae8df4e80.css" as="style"/><link rel="stylesheet" href="/ts-go-rust/_next/static/css/dd3a156ae8df4e80.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/ts-go-rust/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script src="/ts-go-rust/_next/static/chunks/webpack-ca2895bf159c4e7a.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/framework-fc97f3f1282ce3ed.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/main-644608b3fdeed698.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/pages/_app-ca27e81575a7e8b5.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/pages/lessons/%5Bsection%5D/%5Bslug%5D-45325c7c1f030cd9.js" defer=""></script><script src="/ts-go-rust/_next/static/shYjf6s3vWh7Zgh2SM54Y/_buildManifest.js" defer=""></script><script src="/ts-go-rust/_next/static/shYjf6s3vWh7Zgh2SM54Y/_ssgManifest.js" defer=""></script><script src="/ts-go-rust/_next/static/shYjf6s3vWh7Zgh2SM54Y/_middlewareManifest.js" defer=""></script></head><body><div id="__next"><div class="remix-app"><header class="navbar"><h1 class="navbar-brand"><a href="/ts-go-rust">Polyglot Programming - TS, Go, and Rust</a></h1><div class="navbar-info"><a href="https://frontendmasters.com/courses/typescript-go-rust" class="cta-btn">Watch on Frontend Masters</a></div></header><div class="content-container"><div class="main"><div class="lesson-container"><div class="lesson"><div class="lesson-content"><h3 id="remember-breaking-the-problem-up">REMEMBER: Breaking the problem up</h3>
+<pre><code>   1. Creating the CLI options.  These are things we can parse
+      from the command line interface.
+
+   +----------+
+   | cli opts | -&gt;
+   +----------+
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="typescript">TypeScript</h3>
+<p>I am going to make some basic assumptions that everyone watching this is
+familiar with TypeScript and there are probably some of you out there that are
+even better than me at it.</p>
+<h3 id="cli-argument-parsing">CLI Argument parsing</h3>
+<p>There is no reason why you cannot use any other argument parser.  I literally
+saw about 15 of them and played a game of pick whichever one felt good in the
+moment!</p>
+<ul>
+<li>NodeJS : command-line-args<ul>
+<li>simple, easy to use.</li>
+</ul>
+</li>
+</ul>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="lets-setup-our-project">Lets setup our project</h3>
+<p>To make it easy, set it up any way you want.  Personally here is how my folder
+structer will work.</p>
+<pre><code class="hljs language-bash">~/projects/projector-typescript
+~/projects/projector-go
+~/projects/projector-rust
+</code></pre>
+<p>Reason being is that this will make it easiest for me to swap back and forth
+betwixt the projects</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="i-use-tmux-btw">I use tmux, btw</h3>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="i-use-vim-btw">I use vim, btw</h3>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="i-use-dvorak-btw">I use dvorak, btw</h3>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="i-use-a-kinesis-360-btw">I use a Kinesis 360, btw</h3>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="so-to-get-started-lets-create-the-project">So to get started lets create the project</h3>
+<p>Create it where you like</p>
+<pre><code class="hljs language-bash">yarn init -y
+yarn add command-line-args @types/command-line-args
+yarn add ts-node typescript @types/node
+git init
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;node_modules&quot;</span> &gt; .gitignore
+<span class="hljs-built_in">mkdir</span> src
+vim . <span class="hljs-comment"># you can open up other less awesome editors</span>
+</code></pre>
+<p>Yes, of course i am not going to setup a build to make this into an shebang&#39;d
+script.</p>
+<h3 id="example-of-cli-wont-match-exactly">Example of CLI (wont match exactly)</h3>
+<p>Here is an example i&#39;ll be putting under <code>src/opts.ts</code></p>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">import</span> cli <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;command-line-args&quot;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">ProjectorOptions</span> = {
+    pwd?: <span class="hljs-built_in">string</span>; <span class="hljs-comment">// projector --pwd ...</span>
+    config?: <span class="hljs-built_in">string</span>; <span class="hljs-comment">// projector --config ...</span>
+    <span class="hljs-variable language_">arguments</span>?: <span class="hljs-built_in">string</span>[];
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getOptions</span>(<span class="hljs-params"></span>): <span class="hljs-title class_">ProjectorOptions</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">cli</span>([
+        { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;config&#x27;</span>, <span class="hljs-attr">type</span>: <span class="hljs-title class_">String</span> },
+        { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;pwd&#x27;</span>, <span class="hljs-attr">type</span>: <span class="hljs-title class_">String</span> },
+        { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;arguments&#x27;</span>, <span class="hljs-attr">type</span>: <span class="hljs-title class_">String</span>, <span class="hljs-attr">defaultOption</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">multiple</span>: <span class="hljs-literal">true</span> },
+    ]) <span class="hljs-keyword">as</span> <span class="hljs-title class_">ProjectorOptions</span>;
+}
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="so-lets-build-it-again-but-in-go">So lets build it again, but in Go!</h3>
+<p>This is what I think is very valuable.  You have a concrete idea of what we are
+doing, now we do it in a language you are not familiar.</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+</div><div class="lesson-links"><a href="/ts-go-rust/lessons/the-project/questions" class="prev">← Previous</a><a href="/ts-go-rust/lessons/cli/golang-cli" class="next">Next →</a></div></div><div class="details-bg"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="154" height="154" viewBox="0 0 154 154"><defs><clipPath id="clip-path"><rect id="Rectangle_2238" data-name="Rectangle 2238" width="154" height="154" transform="translate(9467 350)" fill="#fff" stroke="#707070" stroke-width="1"></rect></clipPath><clipPath id="clip-corner-image-active"><rect width="154" height="154"></rect></clipPath></defs><g id="corner-image-active" clip-path="url(#clip-corner-image-active)"><g id="Corner-image-active-2" data-name="Corner-image-active" transform="translate(-9467 -350)" clip-path="url(#clip-path)"><path id="Subtraction_34" data-name="Subtraction 34" d="M-3857.365,1740.766h0l-7.07-7.07,12.89-12.89v14.142l-5.818,5.818Zm-14.142-14.142h0l-7.071-7.07,27.033-27.033v14.143l-19.96,19.96Zm-14.143-14.143h0l-7.07-7.069,41.175-41.175v14.142Zm-14.142-14.142h0l-7.07-7.069,55.317-55.317v14.142Zm-14.142-14.142h0l-7.07-7.069,69.459-69.459v14.142Zm-14.142-14.142h0l-7.07-7.069,76.739-76.739h6.862v7.28Zm-14.143-14.143h0l-7.07-7.069,62.6-62.6h14.142Zm-14.142-14.142h0l-7.07-7.069,48.454-48.454h14.142Zm-14.142-14.142h0l-7.07-7.069,34.312-34.312h14.142Zm-14.142-14.142h0l-7.07-7.069,20.17-20.17h14.142Zm-14.142-14.142h0l-7.071-7.071,6.027-6.027h14.144l-13.1,13.1Zm367.24-56.114v-.909l.455.455-.453.453Z" transform="translate(13472.546 -1236.766)" fill="var(--corner-fill)"></path></g></g></svg></div></div></div></div><footer class="footer"><ul class="socials"><li class="social"><a href="https://twitter.com/theprimeagen"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="32" viewBox="0 0 40 32"><defs><clipPath id="clip-twitter-social"><rect width="40" height="32"></rect></clipPath></defs><g id="twitter-social" clip-path="url(#clip-twitter-social)"><g id="Group_269" data-name="Group 269" transform="translate(-230.23 -1140.849)"><path id="Path_419" data-name="Path 419" d="M266.12,1148.861v1.035a23.092,23.092,0,0,1-1.507,8.1,24.08,24.08,0,0,1-4.475,7.381,22.175,22.175,0,0,1-7.306,5.4,24.129,24.129,0,0,1-10,2.07,23.7,23.7,0,0,1-6.667-.945,22.83,22.83,0,0,1-5.936-2.655q.959.091,1.963.09a16.518,16.518,0,0,0,5.434-.9,17.111,17.111,0,0,0,4.749-2.52,8.275,8.275,0,0,1-4.749-1.643,7.8,7.8,0,0,1-2.877-3.983,8.268,8.268,0,0,0,1.507.135,8.58,8.58,0,0,0,2.146-.27,8.16,8.16,0,0,1-5.685-4.344,8.326,8.326,0,0,1-.89-3.578v-.135a7.775,7.775,0,0,0,3.744,1.035,8.183,8.183,0,0,1-2.671-2.9,7.817,7.817,0,0,1-.982-3.848,7.948,7.948,0,0,1,1.1-4.05,23.53,23.53,0,0,0,16.895,8.46,9.221,9.221,0,0,1-.183-1.845,7.787,7.787,0,0,1,1.1-4.05,8.216,8.216,0,0,1,2.991-2.948,7.991,7.991,0,0,1,4.087-1.1,8.184,8.184,0,0,1,5.982,2.566,16.087,16.087,0,0,0,5.205-1.98,7.784,7.784,0,0,1-1.393,2.588,8.4,8.4,0,0,1-2.215,1.913,16.856,16.856,0,0,0,4.749-1.305A17.032,17.032,0,0,1,266.12,1148.861Z" fill="var(--icons)"></path></g></g></svg></a></li><li class="social"><a href="https://twitch.tv/theprimeagen"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2.149 0l-1.612 4.119v16.836h5.731v3.045h3.224l3.045-3.045h4.657l6.269-6.269v-14.686h-21.314zm19.164 13.612l-3.582 3.582h-5.731l-3.045 3.045v-3.045h-4.836v-15.045h17.194v11.463zm-3.582-7.343v6.262h-2.149v-6.262h2.149zm-5.731 0v6.262h-2.149v-6.262h2.149z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></a></li><li class="social"><a href="https://youtube.com/theprimeagen"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2.149 0l-1.612 4.119v16.836h5.731v3.045h3.224l3.045-3.045h4.657l6.269-6.269v-14.686h-21.314zm19.164 13.612l-3.582 3.582h-5.731l-3.045 3.045v-3.045h-4.836v-15.045h17.194v11.463zm-3.582-7.343v6.262h-2.149v-6.262h2.149zm-5.731 0v6.262h-2.149v-6.262h2.149z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></a></li><li class="social"><div class="terms"><p>Content Licensed Under CC-BY-NC-4.0</p><p>Code Samples and Excercises Licensed Under Apache 2.0</p><p>Site Designed by<!-- --> <!-- --><a href="https://www.alexdanielson.com/">Alex Danielson</a></p></div></li></ul></footer></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"attributes":{"title":"TypeScript : CLI","description":"Lets build the cli argument portion of the typescript program"},"html":"\u003ch3 id=\"remember-breaking-the-problem-up\"\u003eREMEMBER: Breaking the problem up\u003c/h3\u003e\n\u003cpre\u003e\u003ccode\u003e   1. Creating the CLI options.  These are things we can parse\n      from the command line interface.\n\n   +----------+\n   | cli opts | -\u0026gt;\n   +----------+\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"typescript\"\u003eTypeScript\u003c/h3\u003e\n\u003cp\u003eI am going to make some basic assumptions that everyone watching this is\nfamiliar with TypeScript and there are probably some of you out there that are\neven better than me at it.\u003c/p\u003e\n\u003ch3 id=\"cli-argument-parsing\"\u003eCLI Argument parsing\u003c/h3\u003e\n\u003cp\u003eThere is no reason why you cannot use any other argument parser.  I literally\nsaw about 15 of them and played a game of pick whichever one felt good in the\nmoment!\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eNodeJS : command-line-args\u003cul\u003e\n\u003cli\u003esimple, easy to use.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"lets-setup-our-project\"\u003eLets setup our project\u003c/h3\u003e\n\u003cp\u003eTo make it easy, set it up any way you want.  Personally here is how my folder\nstructer will work.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-bash\"\u003e~/projects/projector-typescript\n~/projects/projector-go\n~/projects/projector-rust\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eReason being is that this will make it easiest for me to swap back and forth\nbetwixt the projects\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"i-use-tmux-btw\"\u003eI use tmux, btw\u003c/h3\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"i-use-vim-btw\"\u003eI use vim, btw\u003c/h3\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"i-use-dvorak-btw\"\u003eI use dvorak, btw\u003c/h3\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"i-use-a-kinesis-360-btw\"\u003eI use a Kinesis 360, btw\u003c/h3\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"so-to-get-started-lets-create-the-project\"\u003eSo to get started lets create the project\u003c/h3\u003e\n\u003cp\u003eCreate it where you like\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-bash\"\u003eyarn init -y\nyarn add command-line-args @types/command-line-args\nyarn add ts-node typescript @types/node\ngit init\n\u003cspan class=\"hljs-built_in\"\u003eecho\u003c/span\u003e \u003cspan class=\"hljs-string\"\u003e\u0026quot;node_modules\u0026quot;\u003c/span\u003e \u0026gt; .gitignore\n\u003cspan class=\"hljs-built_in\"\u003emkdir\u003c/span\u003e src\nvim . \u003cspan class=\"hljs-comment\"\u003e# you can open up other less awesome editors\u003c/span\u003e\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eYes, of course i am not going to setup a build to make this into an shebang\u0026#39;d\nscript.\u003c/p\u003e\n\u003ch3 id=\"example-of-cli-wont-match-exactly\"\u003eExample of CLI (wont match exactly)\u003c/h3\u003e\n\u003cp\u003eHere is an example i\u0026#39;ll be putting under \u003ccode\u003esrc/opts.ts\u003c/code\u003e\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-typescript\"\u003e\u003cspan class=\"hljs-keyword\"\u003eimport\u003c/span\u003e cli \u003cspan class=\"hljs-keyword\"\u003efrom\u003c/span\u003e \u003cspan class=\"hljs-string\"\u003e\u0026quot;command-line-args\u0026quot;\u003c/span\u003e;\n\n\u003cspan class=\"hljs-keyword\"\u003eexport\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003etype\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eProjectorOptions\u003c/span\u003e = {\n    pwd?: \u003cspan class=\"hljs-built_in\"\u003estring\u003c/span\u003e; \u003cspan class=\"hljs-comment\"\u003e// projector --pwd ...\u003c/span\u003e\n    config?: \u003cspan class=\"hljs-built_in\"\u003estring\u003c/span\u003e; \u003cspan class=\"hljs-comment\"\u003e// projector --config ...\u003c/span\u003e\n    \u003cspan class=\"hljs-variable language_\"\u003earguments\u003c/span\u003e?: \u003cspan class=\"hljs-built_in\"\u003estring\u003c/span\u003e[];\n}\n\n\u003cspan class=\"hljs-keyword\"\u003eexport\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003edefault\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003efunction\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003egetOptions\u003c/span\u003e(\u003cspan class=\"hljs-params\"\u003e\u003c/span\u003e): \u003cspan class=\"hljs-title class_\"\u003eProjectorOptions\u003c/span\u003e {\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003ecli\u003c/span\u003e([\n        { \u003cspan class=\"hljs-attr\"\u003ename\u003c/span\u003e: \u003cspan class=\"hljs-string\"\u003e\u0026#x27;config\u0026#x27;\u003c/span\u003e, \u003cspan class=\"hljs-attr\"\u003etype\u003c/span\u003e: \u003cspan class=\"hljs-title class_\"\u003eString\u003c/span\u003e },\n        { \u003cspan class=\"hljs-attr\"\u003ename\u003c/span\u003e: \u003cspan class=\"hljs-string\"\u003e\u0026#x27;pwd\u0026#x27;\u003c/span\u003e, \u003cspan class=\"hljs-attr\"\u003etype\u003c/span\u003e: \u003cspan class=\"hljs-title class_\"\u003eString\u003c/span\u003e },\n        { \u003cspan class=\"hljs-attr\"\u003ename\u003c/span\u003e: \u003cspan class=\"hljs-string\"\u003e\u0026#x27;arguments\u0026#x27;\u003c/span\u003e, \u003cspan class=\"hljs-attr\"\u003etype\u003c/span\u003e: \u003cspan class=\"hljs-title class_\"\u003eString\u003c/span\u003e, \u003cspan class=\"hljs-attr\"\u003edefaultOption\u003c/span\u003e: \u003cspan class=\"hljs-literal\"\u003etrue\u003c/span\u003e, \u003cspan class=\"hljs-attr\"\u003emultiple\u003c/span\u003e: \u003cspan class=\"hljs-literal\"\u003etrue\u003c/span\u003e },\n    ]) \u003cspan class=\"hljs-keyword\"\u003eas\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eProjectorOptions\u003c/span\u003e;\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"so-lets-build-it-again-but-in-go\"\u003eSo lets build it again, but in Go!\u003c/h3\u003e\n\u003cp\u003eThis is what I think is very valuable.  You have a concrete idea of what we are\ndoing, now we do it in a language you are not familiar.\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n","slug":"typescript-cli","title":"TypeScript : CLI","section":"The CLI Options","icon":"dumpster-fire","filePath":"/home/runner/work/ts-go-rust/ts-go-rust/lessons/04-cli/A-typescript-cli.md","nextSlug":"/ts-go-rust/lessons/cli/golang-cli","prevSlug":"/ts-go-rust/lessons/the-project/questions"}},"__N_SSG":true},"page":"/lessons/[section]/[slug]","query":{"section":"cli","slug":"typescript-cli"},"buildId":"shYjf6s3vWh7Zgh2SM54Y","assetPrefix":"/ts-go-rust","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

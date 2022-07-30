@@ -1,0 +1,180 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><title>Rust : Projector Object – Polyglot Programming - TS, Go, and Rust</title><meta name="description" content="This course is designed for those that want to expand their knowledge to other languages by building a tool within the new language, and not reading yet another language tutorial.  This will be a fast paced, high octain learning experience."/><meta name="og:description" content="This course is designed for those that want to expand their knowledge to other languages by building a tool within the new language, and not reading yet another language tutorial.  This will be a fast paced, high octain learning experience."/><meta name="og:title" content="Rust : Projector Object – Polyglot Programming - TS, Go, and Rust"/><meta name="og:image" content="/ts-go-rust/images/social-share-cover.jpg"/><meta name="twitter:card" content="summary_large_image"/><meta name="next-head-count" content="8"/><link rel="preload" href="/ts-go-rust/_next/static/css/dd3a156ae8df4e80.css" as="style"/><link rel="stylesheet" href="/ts-go-rust/_next/static/css/dd3a156ae8df4e80.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/ts-go-rust/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script src="/ts-go-rust/_next/static/chunks/webpack-ca2895bf159c4e7a.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/framework-fc97f3f1282ce3ed.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/main-644608b3fdeed698.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/pages/_app-ca27e81575a7e8b5.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/pages/lessons/%5Bsection%5D/%5Bslug%5D-45325c7c1f030cd9.js" defer=""></script><script src="/ts-go-rust/_next/static/shYjf6s3vWh7Zgh2SM54Y/_buildManifest.js" defer=""></script><script src="/ts-go-rust/_next/static/shYjf6s3vWh7Zgh2SM54Y/_ssgManifest.js" defer=""></script><script src="/ts-go-rust/_next/static/shYjf6s3vWh7Zgh2SM54Y/_middlewareManifest.js" defer=""></script></head><body><div id="__next"><div class="remix-app"><header class="navbar"><h1 class="navbar-brand"><a href="/ts-go-rust">Polyglot Programming - TS, Go, and Rust</a></h1><div class="navbar-info"><a href="https://frontendmasters.com/courses/typescript-go-rust" class="cta-btn">Watch on Frontend Masters</a></div></header><div class="content-container"><div class="main"><div class="lesson-container"><div class="lesson"><div class="lesson-content"><h3 id="do-you-really-need-to-see-this">Do you really need to see this?</h3>
+<pre><code>   +----------+    +----------+
+   | cli opts | -&gt; | project  | -+-&gt;
+   |  (done)  |    |  config  |  |
+   +----------+    +----------+  |
+                                 |
+                                 +-&gt;
+                                 |
+                                 |
+                                 |
+                                 +-&gt;
+
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h4 id="we-may-not-be-doing-this-the-canonical-way-but-its-the-fun-way">We may not be doing this the canonical way, but its the fun way</h4>
+<p>We are going to do this a bit weird, but I think its fantastic.  It will really
+show you the power of the trait system.</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="lets-build-the-projector-object">Lets build the Projector object</h3>
+<pre><code class="hljs language-bash">src/projector/config.go
+</code></pre>
+<p>LETS BUILD!!!</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h4 id="the-code">The code!</h4>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">use</span> std::path::PathBuf;
+
+<span class="hljs-keyword">use</span> crate::opts::CLIOptions;
+<span class="hljs-keyword">use</span> anyhow::{<span class="hljs-type">Result</span>, anyhow, Context};
+
+<span class="hljs-keyword">pub</span> <span class="hljs-keyword">enum</span> <span class="hljs-title class_">Operation</span> {
+    <span class="hljs-title function_ invoke__">Print</span>(<span class="hljs-type">Option</span>&lt;<span class="hljs-type">String</span>&gt;),
+    <span class="hljs-title function_ invoke__">Add</span>((<span class="hljs-type">String</span>, <span class="hljs-type">String</span>)),
+    <span class="hljs-title function_ invoke__">Remove</span>(<span class="hljs-type">String</span>),
+}
+
+<span class="hljs-keyword">pub</span> <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ProjectorConfig</span> {
+    <span class="hljs-keyword">pub</span> operation: Operation,
+    <span class="hljs-keyword">pub</span> config: PathBuf,
+    <span class="hljs-keyword">pub</span> pwd: PathBuf,
+}
+
+<span class="hljs-keyword">impl</span> <span class="hljs-title class_">TryFrom</span>&lt;<span class="hljs-type">Vec</span>&lt;<span class="hljs-type">String</span>&gt;&gt; <span class="hljs-keyword">for</span> <span class="hljs-title class_">Operation</span> {
+    <span class="hljs-keyword">type</span> <span class="hljs-title class_">Error</span> = anyhow::Error;
+
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">try_from</span>(<span class="hljs-keyword">mut</span> value: <span class="hljs-type">Vec</span>&lt;<span class="hljs-type">String</span>&gt;) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Result</span>&lt;<span class="hljs-keyword">Self</span>, <span class="hljs-keyword">Self</span>::Error&gt; {
+        <span class="hljs-keyword">if</span> value.<span class="hljs-title function_ invoke__">len</span>() == <span class="hljs-number">0</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Ok</span>(Operation::<span class="hljs-title function_ invoke__">Print</span>(<span class="hljs-literal">None</span>));
+        }
+
+        <span class="hljs-keyword">let</span> <span class="hljs-variable">term</span> = value.<span class="hljs-title function_ invoke__">get</span>(<span class="hljs-number">0</span>).<span class="hljs-title function_ invoke__">unwrap</span>();
+
+        <span class="hljs-keyword">if</span> term == <span class="hljs-string">&quot;add&quot;</span> {
+            <span class="hljs-keyword">if</span> value.<span class="hljs-title function_ invoke__">len</span>() != <span class="hljs-number">3</span> {
+                <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Err</span>(anyhow!(<span class="hljs-string">&quot;expected 2 arguments but you provided {}&quot;</span>, value.<span class="hljs-title function_ invoke__">len</span>() - <span class="hljs-number">1</span>));
+            }
+            <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">drain</span> = value.<span class="hljs-title function_ invoke__">drain</span>(<span class="hljs-number">1</span>..=<span class="hljs-number">2</span>);
+            <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Ok</span>(Operation::<span class="hljs-title function_ invoke__">Add</span>((drain.<span class="hljs-title function_ invoke__">next</span>().<span class="hljs-title function_ invoke__">unwrap</span>(), drain.<span class="hljs-title function_ invoke__">next</span>().<span class="hljs-title function_ invoke__">unwrap</span>())));
+        }
+
+        <span class="hljs-keyword">if</span> term == <span class="hljs-string">&quot;rm&quot;</span> {
+            <span class="hljs-keyword">if</span> value.<span class="hljs-title function_ invoke__">len</span>() != <span class="hljs-number">2</span> {
+                <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Err</span>(anyhow!(<span class="hljs-string">&quot;expected 1 arguments but you provided {}&quot;</span>, value.<span class="hljs-title function_ invoke__">len</span>() - <span class="hljs-number">1</span>));
+            }
+            <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">drain</span> = value.<span class="hljs-title function_ invoke__">drain</span>(<span class="hljs-number">1</span>..<span class="hljs-number">2</span>);
+            <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Ok</span>(Operation::<span class="hljs-title function_ invoke__">Remove</span>(drain.<span class="hljs-title function_ invoke__">next</span>().<span class="hljs-title function_ invoke__">unwrap</span>()));
+        }
+
+        <span class="hljs-keyword">if</span> value.<span class="hljs-title function_ invoke__">len</span>() != <span class="hljs-number">1</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Err</span>(anyhow!(<span class="hljs-string">&quot;expected 0 or 1 arguments but you provided {}&quot;</span>, value.<span class="hljs-title function_ invoke__">len</span>()));
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Ok</span>(Operation::<span class="hljs-title function_ invoke__">Print</span>(<span class="hljs-title function_ invoke__">Some</span>(term.<span class="hljs-title function_ invoke__">clone</span>())));
+    }
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_config</span>(config: <span class="hljs-type">Option</span>&lt;PathBuf&gt;) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Result</span>&lt;PathBuf&gt; {
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">Some</span>(c) = config {
+        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Ok</span>(c);
+    }
+
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">Ok</span>(home) = std::env::<span class="hljs-title function_ invoke__">var</span>(<span class="hljs-string">&quot;XDG_CONFIG_HOME&quot;</span>) {
+
+        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">home</span> = PathBuf::<span class="hljs-title function_ invoke__">from</span>(home);
+        home.<span class="hljs-title function_ invoke__">push</span>(<span class="hljs-string">&quot;projector&quot;</span>);
+        home.<span class="hljs-title function_ invoke__">push</span>(<span class="hljs-string">&quot;projector.json&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Ok</span>(home);
+    }
+
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">Ok</span>(home) = std::env::<span class="hljs-title function_ invoke__">var</span>(<span class="hljs-string">&quot;HOME&quot;</span>) {
+        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">home</span> = PathBuf::<span class="hljs-title function_ invoke__">from</span>(home);
+        home.<span class="hljs-title function_ invoke__">push</span>(<span class="hljs-string">&quot;projector&quot;</span>);
+        home.<span class="hljs-title function_ invoke__">push</span>(<span class="hljs-string">&quot;projector.json&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Ok</span>(home);
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Err</span>(anyhow!(<span class="hljs-string">&quot;unable to find config location&quot;</span>));
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_pwd</span>(pwd: <span class="hljs-type">Option</span>&lt;PathBuf&gt;) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Result</span>&lt;PathBuf&gt; {
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">Some</span>(p) = pwd {
+        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Ok</span>(p);
+    }
+
+    <span class="hljs-keyword">return</span> std::env::<span class="hljs-title function_ invoke__">current_dir</span>().<span class="hljs-title function_ invoke__">context</span>(<span class="hljs-string">&quot;unable to get std::env::current_dir&quot;</span>);
+}
+
+<span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">get_projector_config</span>(opts: CLIOptions) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Result</span>&lt;ProjectorConfig&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Ok</span>(ProjectorConfig {
+        operation: opts.arguments.<span class="hljs-title function_ invoke__">try_into</span>()?,
+        config: <span class="hljs-title function_ invoke__">get_config</span>(opts.config)?,
+        pwd: <span class="hljs-title function_ invoke__">get_pwd</span>(opts.pwd)?,
+    });
+}
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+</div><div class="lesson-links"><a href="/ts-go-rust/lessons/config/golang-projector-object" class="prev">← Previous</a><a href="/ts-go-rust/lessons/config/questions" class="next">Next →</a></div></div><div class="details-bg"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="154" height="154" viewBox="0 0 154 154"><defs><clipPath id="clip-path"><rect id="Rectangle_2238" data-name="Rectangle 2238" width="154" height="154" transform="translate(9467 350)" fill="#fff" stroke="#707070" stroke-width="1"></rect></clipPath><clipPath id="clip-corner-image-active"><rect width="154" height="154"></rect></clipPath></defs><g id="corner-image-active" clip-path="url(#clip-corner-image-active)"><g id="Corner-image-active-2" data-name="Corner-image-active" transform="translate(-9467 -350)" clip-path="url(#clip-path)"><path id="Subtraction_34" data-name="Subtraction 34" d="M-3857.365,1740.766h0l-7.07-7.07,12.89-12.89v14.142l-5.818,5.818Zm-14.142-14.142h0l-7.071-7.07,27.033-27.033v14.143l-19.96,19.96Zm-14.143-14.143h0l-7.07-7.069,41.175-41.175v14.142Zm-14.142-14.142h0l-7.07-7.069,55.317-55.317v14.142Zm-14.142-14.142h0l-7.07-7.069,69.459-69.459v14.142Zm-14.142-14.142h0l-7.07-7.069,76.739-76.739h6.862v7.28Zm-14.143-14.143h0l-7.07-7.069,62.6-62.6h14.142Zm-14.142-14.142h0l-7.07-7.069,48.454-48.454h14.142Zm-14.142-14.142h0l-7.07-7.069,34.312-34.312h14.142Zm-14.142-14.142h0l-7.07-7.069,20.17-20.17h14.142Zm-14.142-14.142h0l-7.071-7.071,6.027-6.027h14.144l-13.1,13.1Zm367.24-56.114v-.909l.455.455-.453.453Z" transform="translate(13472.546 -1236.766)" fill="var(--corner-fill)"></path></g></g></svg></div></div></div></div><footer class="footer"><ul class="socials"><li class="social"><a href="https://twitter.com/theprimeagen"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="32" viewBox="0 0 40 32"><defs><clipPath id="clip-twitter-social"><rect width="40" height="32"></rect></clipPath></defs><g id="twitter-social" clip-path="url(#clip-twitter-social)"><g id="Group_269" data-name="Group 269" transform="translate(-230.23 -1140.849)"><path id="Path_419" data-name="Path 419" d="M266.12,1148.861v1.035a23.092,23.092,0,0,1-1.507,8.1,24.08,24.08,0,0,1-4.475,7.381,22.175,22.175,0,0,1-7.306,5.4,24.129,24.129,0,0,1-10,2.07,23.7,23.7,0,0,1-6.667-.945,22.83,22.83,0,0,1-5.936-2.655q.959.091,1.963.09a16.518,16.518,0,0,0,5.434-.9,17.111,17.111,0,0,0,4.749-2.52,8.275,8.275,0,0,1-4.749-1.643,7.8,7.8,0,0,1-2.877-3.983,8.268,8.268,0,0,0,1.507.135,8.58,8.58,0,0,0,2.146-.27,8.16,8.16,0,0,1-5.685-4.344,8.326,8.326,0,0,1-.89-3.578v-.135a7.775,7.775,0,0,0,3.744,1.035,8.183,8.183,0,0,1-2.671-2.9,7.817,7.817,0,0,1-.982-3.848,7.948,7.948,0,0,1,1.1-4.05,23.53,23.53,0,0,0,16.895,8.46,9.221,9.221,0,0,1-.183-1.845,7.787,7.787,0,0,1,1.1-4.05,8.216,8.216,0,0,1,2.991-2.948,7.991,7.991,0,0,1,4.087-1.1,8.184,8.184,0,0,1,5.982,2.566,16.087,16.087,0,0,0,5.205-1.98,7.784,7.784,0,0,1-1.393,2.588,8.4,8.4,0,0,1-2.215,1.913,16.856,16.856,0,0,0,4.749-1.305A17.032,17.032,0,0,1,266.12,1148.861Z" fill="var(--icons)"></path></g></g></svg></a></li><li class="social"><a href="https://twitch.tv/theprimeagen"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2.149 0l-1.612 4.119v16.836h5.731v3.045h3.224l3.045-3.045h4.657l6.269-6.269v-14.686h-21.314zm19.164 13.612l-3.582 3.582h-5.731l-3.045 3.045v-3.045h-4.836v-15.045h17.194v11.463zm-3.582-7.343v6.262h-2.149v-6.262h2.149zm-5.731 0v6.262h-2.149v-6.262h2.149z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></a></li><li class="social"><a href="https://youtube.com/theprimeagen"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2.149 0l-1.612 4.119v16.836h5.731v3.045h3.224l3.045-3.045h4.657l6.269-6.269v-14.686h-21.314zm19.164 13.612l-3.582 3.582h-5.731l-3.045 3.045v-3.045h-4.836v-15.045h17.194v11.463zm-3.582-7.343v6.262h-2.149v-6.262h2.149zm-5.731 0v6.262h-2.149v-6.262h2.149z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></a></li><li class="social"><div class="terms"><p>Content Licensed Under CC-BY-NC-4.0</p><p>Code Samples and Excercises Licensed Under Apache 2.0</p><p>Site Designed by<!-- --> <!-- --><a href="https://www.alexdanielson.com/">Alex Danielson</a></p></div></li></ul></footer></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"attributes":{"title":"Rust : Projector Object","description":"The greatest language ever created by man"},"html":"\u003ch3 id=\"do-you-really-need-to-see-this\"\u003eDo you really need to see this?\u003c/h3\u003e\n\u003cpre\u003e\u003ccode\u003e   +----------+    +----------+\n   | cli opts | -\u0026gt; | project  | -+-\u0026gt;\n   |  (done)  |    |  config  |  |\n   +----------+    +----------+  |\n                                 |\n                                 +-\u0026gt;\n                                 |\n                                 |\n                                 |\n                                 +-\u0026gt;\n\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch4 id=\"we-may-not-be-doing-this-the-canonical-way-but-its-the-fun-way\"\u003eWe may not be doing this the canonical way, but its the fun way\u003c/h4\u003e\n\u003cp\u003eWe are going to do this a bit weird, but I think its fantastic.  It will really\nshow you the power of the trait system.\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"lets-build-the-projector-object\"\u003eLets build the Projector object\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-bash\"\u003esrc/projector/config.go\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eLETS BUILD!!!\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch4 id=\"the-code\"\u003eThe code!\u003c/h4\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003euse\u003c/span\u003e std::path::PathBuf;\n\n\u003cspan class=\"hljs-keyword\"\u003euse\u003c/span\u003e crate::opts::CLIOptions;\n\u003cspan class=\"hljs-keyword\"\u003euse\u003c/span\u003e anyhow::{\u003cspan class=\"hljs-type\"\u003eResult\u003c/span\u003e, anyhow, Context};\n\n\u003cspan class=\"hljs-keyword\"\u003epub\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003eenum\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eOperation\u003c/span\u003e {\n    \u003cspan class=\"hljs-title function_ invoke__\"\u003ePrint\u003c/span\u003e(\u003cspan class=\"hljs-type\"\u003eOption\u003c/span\u003e\u0026lt;\u003cspan class=\"hljs-type\"\u003eString\u003c/span\u003e\u0026gt;),\n    \u003cspan class=\"hljs-title function_ invoke__\"\u003eAdd\u003c/span\u003e((\u003cspan class=\"hljs-type\"\u003eString\u003c/span\u003e, \u003cspan class=\"hljs-type\"\u003eString\u003c/span\u003e)),\n    \u003cspan class=\"hljs-title function_ invoke__\"\u003eRemove\u003c/span\u003e(\u003cspan class=\"hljs-type\"\u003eString\u003c/span\u003e),\n}\n\n\u003cspan class=\"hljs-keyword\"\u003epub\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003estruct\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eProjectorConfig\u003c/span\u003e {\n    \u003cspan class=\"hljs-keyword\"\u003epub\u003c/span\u003e operation: Operation,\n    \u003cspan class=\"hljs-keyword\"\u003epub\u003c/span\u003e config: PathBuf,\n    \u003cspan class=\"hljs-keyword\"\u003epub\u003c/span\u003e pwd: PathBuf,\n}\n\n\u003cspan class=\"hljs-keyword\"\u003eimpl\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eTryFrom\u003c/span\u003e\u0026lt;\u003cspan class=\"hljs-type\"\u003eVec\u003c/span\u003e\u0026lt;\u003cspan class=\"hljs-type\"\u003eString\u003c/span\u003e\u0026gt;\u0026gt; \u003cspan class=\"hljs-keyword\"\u003efor\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eOperation\u003c/span\u003e {\n    \u003cspan class=\"hljs-keyword\"\u003etype\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eError\u003c/span\u003e = anyhow::Error;\n\n    \u003cspan class=\"hljs-keyword\"\u003efn\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003etry_from\u003c/span\u003e(\u003cspan class=\"hljs-keyword\"\u003emut\u003c/span\u003e value: \u003cspan class=\"hljs-type\"\u003eVec\u003c/span\u003e\u0026lt;\u003cspan class=\"hljs-type\"\u003eString\u003c/span\u003e\u0026gt;) \u003cspan class=\"hljs-punctuation\"\u003e-\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-type\"\u003eResult\u003c/span\u003e\u0026lt;\u003cspan class=\"hljs-keyword\"\u003eSelf\u003c/span\u003e, \u003cspan class=\"hljs-keyword\"\u003eSelf\u003c/span\u003e::Error\u0026gt; {\n        \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e value.\u003cspan class=\"hljs-title function_ invoke__\"\u003elen\u003c/span\u003e() == \u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e {\n            \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eOk\u003c/span\u003e(Operation::\u003cspan class=\"hljs-title function_ invoke__\"\u003ePrint\u003c/span\u003e(\u003cspan class=\"hljs-literal\"\u003eNone\u003c/span\u003e));\n        }\n\n        \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003eterm\u003c/span\u003e = value.\u003cspan class=\"hljs-title function_ invoke__\"\u003eget\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e).\u003cspan class=\"hljs-title function_ invoke__\"\u003eunwrap\u003c/span\u003e();\n\n        \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e term == \u003cspan class=\"hljs-string\"\u003e\u0026quot;add\u0026quot;\u003c/span\u003e {\n            \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e value.\u003cspan class=\"hljs-title function_ invoke__\"\u003elen\u003c/span\u003e() != \u003cspan class=\"hljs-number\"\u003e3\u003c/span\u003e {\n                \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eErr\u003c/span\u003e(anyhow!(\u003cspan class=\"hljs-string\"\u003e\u0026quot;expected 2 arguments but you provided {}\u0026quot;\u003c/span\u003e, value.\u003cspan class=\"hljs-title function_ invoke__\"\u003elen\u003c/span\u003e() - \u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e));\n            }\n            \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003emut \u003c/span\u003e\u003cspan class=\"hljs-variable\"\u003edrain\u003c/span\u003e = value.\u003cspan class=\"hljs-title function_ invoke__\"\u003edrain\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e..=\u003cspan class=\"hljs-number\"\u003e2\u003c/span\u003e);\n            \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eOk\u003c/span\u003e(Operation::\u003cspan class=\"hljs-title function_ invoke__\"\u003eAdd\u003c/span\u003e((drain.\u003cspan class=\"hljs-title function_ invoke__\"\u003enext\u003c/span\u003e().\u003cspan class=\"hljs-title function_ invoke__\"\u003eunwrap\u003c/span\u003e(), drain.\u003cspan class=\"hljs-title function_ invoke__\"\u003enext\u003c/span\u003e().\u003cspan class=\"hljs-title function_ invoke__\"\u003eunwrap\u003c/span\u003e())));\n        }\n\n        \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e term == \u003cspan class=\"hljs-string\"\u003e\u0026quot;rm\u0026quot;\u003c/span\u003e {\n            \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e value.\u003cspan class=\"hljs-title function_ invoke__\"\u003elen\u003c/span\u003e() != \u003cspan class=\"hljs-number\"\u003e2\u003c/span\u003e {\n                \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eErr\u003c/span\u003e(anyhow!(\u003cspan class=\"hljs-string\"\u003e\u0026quot;expected 1 arguments but you provided {}\u0026quot;\u003c/span\u003e, value.\u003cspan class=\"hljs-title function_ invoke__\"\u003elen\u003c/span\u003e() - \u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e));\n            }\n            \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003emut \u003c/span\u003e\u003cspan class=\"hljs-variable\"\u003edrain\u003c/span\u003e = value.\u003cspan class=\"hljs-title function_ invoke__\"\u003edrain\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e..\u003cspan class=\"hljs-number\"\u003e2\u003c/span\u003e);\n            \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eOk\u003c/span\u003e(Operation::\u003cspan class=\"hljs-title function_ invoke__\"\u003eRemove\u003c/span\u003e(drain.\u003cspan class=\"hljs-title function_ invoke__\"\u003enext\u003c/span\u003e().\u003cspan class=\"hljs-title function_ invoke__\"\u003eunwrap\u003c/span\u003e()));\n        }\n\n        \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e value.\u003cspan class=\"hljs-title function_ invoke__\"\u003elen\u003c/span\u003e() != \u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e {\n            \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eErr\u003c/span\u003e(anyhow!(\u003cspan class=\"hljs-string\"\u003e\u0026quot;expected 0 or 1 arguments but you provided {}\u0026quot;\u003c/span\u003e, value.\u003cspan class=\"hljs-title function_ invoke__\"\u003elen\u003c/span\u003e()));\n        }\n\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eOk\u003c/span\u003e(Operation::\u003cspan class=\"hljs-title function_ invoke__\"\u003ePrint\u003c/span\u003e(\u003cspan class=\"hljs-title function_ invoke__\"\u003eSome\u003c/span\u003e(term.\u003cspan class=\"hljs-title function_ invoke__\"\u003eclone\u003c/span\u003e())));\n    }\n}\n\n\u003cspan class=\"hljs-keyword\"\u003efn\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003eget_config\u003c/span\u003e(config: \u003cspan class=\"hljs-type\"\u003eOption\u003c/span\u003e\u0026lt;PathBuf\u0026gt;) \u003cspan class=\"hljs-punctuation\"\u003e-\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-type\"\u003eResult\u003c/span\u003e\u0026lt;PathBuf\u0026gt; {\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003eSome\u003c/span\u003e(c) = config {\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eOk\u003c/span\u003e(c);\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003eOk\u003c/span\u003e(home) = std::env::\u003cspan class=\"hljs-title function_ invoke__\"\u003evar\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;XDG_CONFIG_HOME\u0026quot;\u003c/span\u003e) {\n\n        \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003emut \u003c/span\u003e\u003cspan class=\"hljs-variable\"\u003ehome\u003c/span\u003e = PathBuf::\u003cspan class=\"hljs-title function_ invoke__\"\u003efrom\u003c/span\u003e(home);\n        home.\u003cspan class=\"hljs-title function_ invoke__\"\u003epush\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;projector\u0026quot;\u003c/span\u003e);\n        home.\u003cspan class=\"hljs-title function_ invoke__\"\u003epush\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;projector.json\u0026quot;\u003c/span\u003e);\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eOk\u003c/span\u003e(home);\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003eOk\u003c/span\u003e(home) = std::env::\u003cspan class=\"hljs-title function_ invoke__\"\u003evar\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;HOME\u0026quot;\u003c/span\u003e) {\n        \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003emut \u003c/span\u003e\u003cspan class=\"hljs-variable\"\u003ehome\u003c/span\u003e = PathBuf::\u003cspan class=\"hljs-title function_ invoke__\"\u003efrom\u003c/span\u003e(home);\n        home.\u003cspan class=\"hljs-title function_ invoke__\"\u003epush\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;projector\u0026quot;\u003c/span\u003e);\n        home.\u003cspan class=\"hljs-title function_ invoke__\"\u003epush\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;projector.json\u0026quot;\u003c/span\u003e);\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eOk\u003c/span\u003e(home);\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eErr\u003c/span\u003e(anyhow!(\u003cspan class=\"hljs-string\"\u003e\u0026quot;unable to find config location\u0026quot;\u003c/span\u003e));\n}\n\n\u003cspan class=\"hljs-keyword\"\u003efn\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003eget_pwd\u003c/span\u003e(pwd: \u003cspan class=\"hljs-type\"\u003eOption\u003c/span\u003e\u0026lt;PathBuf\u0026gt;) \u003cspan class=\"hljs-punctuation\"\u003e-\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-type\"\u003eResult\u003c/span\u003e\u0026lt;PathBuf\u0026gt; {\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003eSome\u003c/span\u003e(p) = pwd {\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eOk\u003c/span\u003e(p);\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e std::env::\u003cspan class=\"hljs-title function_ invoke__\"\u003ecurrent_dir\u003c/span\u003e().\u003cspan class=\"hljs-title function_ invoke__\"\u003econtext\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;unable to get std::env::current_dir\u0026quot;\u003c/span\u003e);\n}\n\n\u003cspan class=\"hljs-keyword\"\u003epub\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003efn\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003eget_projector_config\u003c/span\u003e(opts: CLIOptions) \u003cspan class=\"hljs-punctuation\"\u003e-\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-type\"\u003eResult\u003c/span\u003e\u0026lt;ProjectorConfig\u0026gt; {\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eOk\u003c/span\u003e(ProjectorConfig {\n        operation: opts.arguments.\u003cspan class=\"hljs-title function_ invoke__\"\u003etry_into\u003c/span\u003e()?,\n        config: \u003cspan class=\"hljs-title function_ invoke__\"\u003eget_config\u003c/span\u003e(opts.config)?,\n        pwd: \u003cspan class=\"hljs-title function_ invoke__\"\u003eget_pwd\u003c/span\u003e(opts.pwd)?,\n    });\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n","slug":"rust-projector-object","title":"Rust : Projector Object","section":"The Projector object","icon":"dumpster-fire","filePath":"/home/runner/work/ts-go-rust/ts-go-rust/lessons/05-config/C-rust-projector-object.md","nextSlug":"/ts-go-rust/lessons/config/questions","prevSlug":"/ts-go-rust/lessons/config/golang-projector-object"}},"__N_SSG":true},"page":"/lessons/[section]/[slug]","query":{"section":"config","slug":"rust-projector-object"},"buildId":"shYjf6s3vWh7Zgh2SM54Y","assetPrefix":"/ts-go-rust","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

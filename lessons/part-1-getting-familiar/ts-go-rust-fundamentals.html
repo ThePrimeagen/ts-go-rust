@@ -1,0 +1,1194 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><title>Ts Go Rust Fundamentals – Polyglot Programming - TS, Go, and Rust</title><meta name="description" content="This course is designed for those that want to expand their knowledge to other languages by building a tool within the new language, and not reading yet another language tutorial.  This will be a fast paced, high octain learning experience."/><meta name="og:description" content="This course is designed for those that want to expand their knowledge to other languages by building a tool within the new language, and not reading yet another language tutorial.  This will be a fast paced, high octain learning experience."/><meta name="og:title" content="Ts Go Rust Fundamentals – Polyglot Programming - TS, Go, and Rust"/><meta name="og:image" content="/ts-go-rust/images/social-share-cover.jpg"/><meta name="twitter:card" content="summary_large_image"/><meta name="next-head-count" content="8"/><link rel="preload" href="/ts-go-rust/_next/static/css/dd3a156ae8df4e80.css" as="style"/><link rel="stylesheet" href="/ts-go-rust/_next/static/css/dd3a156ae8df4e80.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/ts-go-rust/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script src="/ts-go-rust/_next/static/chunks/webpack-ca2895bf159c4e7a.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/framework-fc97f3f1282ce3ed.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/main-644608b3fdeed698.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/pages/_app-ca27e81575a7e8b5.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/pages/lessons/%5Bsection%5D/%5Bslug%5D-45325c7c1f030cd9.js" defer=""></script><script src="/ts-go-rust/_next/static/shYjf6s3vWh7Zgh2SM54Y/_buildManifest.js" defer=""></script><script src="/ts-go-rust/_next/static/shYjf6s3vWh7Zgh2SM54Y/_ssgManifest.js" defer=""></script><script src="/ts-go-rust/_next/static/shYjf6s3vWh7Zgh2SM54Y/_middlewareManifest.js" defer=""></script></head><body><div id="__next"><div class="remix-app"><header class="navbar"><h1 class="navbar-brand"><a href="/ts-go-rust">Polyglot Programming - TS, Go, and Rust</a></h1><div class="navbar-info"><a href="https://frontendmasters.com/courses/typescript-go-rust" class="cta-btn">Watch on Frontend Masters</a></div></header><div class="content-container"><div class="main"><div class="lesson-container"><div class="lesson"><div class="lesson-content"><h2 id="the-fundamentals-of-the-languages">The fundamentals of the languages.</h2>
+<p>We are going to go over some fundamentals of each language to hopefully make
+the transitioning easier between these 3 languages.</p>
+<br />
+
+<p>Remember, this is fast paced, but there is room for questions, as I have even
+made explicit stops.  If you are viewing this live on FrontEndMasters.com or
+twitch.tv/ThePrimeagen and have a question, please feel free to throw it in the
+chat and hopefully I can answer it!</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="syntax">Syntax</h3>
+<p>I am not going to cover language specifics and syntax.</p>
+<p>Example: what happens here?  If you have some experience with rust, please
+don&#39;t answer.</p>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">let</span> <span class="hljs-variable">foo</span> = <span class="hljs-keyword">if</span> boolean_statement {
+    <span class="hljs-number">0</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-number">1</span>
+};
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="typescript-version">TypeScript version</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">const</span> foo = boolean_statement ? <span class="hljs-number">0</span> : <span class="hljs-number">1</span>;
+</code></pre>
+<br />
+
+<p>So if you do have a question, speak up during those times and I&#39;ll go over
+anything specific.  But the goal here is to make a course that is geared
+towards people who feel comfortable with programming and would like to pick up
+a second or third language.</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="rust-borrow-checker">Rust Borrow Checker</h3>
+<p>Rust is famous for difficulty.  For its borrow checker.  There are memes and I
+personally have rage quit using rust because I didn&#39;t understand the basics of
+rust.</p>
+<p>From the rearview mirror, this is simple</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h2 id="lets-start-with-other-programming-languages">Lets start with other programming languages</h2>
+<h3 id="javascript">JavaScript</h3>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> a = [];
+<span class="hljs-keyword">const</span> b = a;
+b.<span class="hljs-title function_">push</span>(<span class="hljs-number">5</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(b);
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="c">C++</h3>
+<pre><code class="hljs language-cpp">std::vector&lt;<span class="hljs-type">int</span>&gt; a;
+std::vector&lt;<span class="hljs-type">int</span>&gt; b = a;
+b.<span class="hljs-built_in">push_back</span>(<span class="hljs-number">5</span>);
+
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a size: %zu\n&quot;</span>, a.<span class="hljs-built_in">size</span>());
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;b size: %zu\n&quot;</span>, b.<span class="hljs-built_in">size</span>());
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="rust">Rust</h3>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">let</span> <span class="hljs-variable">a</span>: <span class="hljs-type">Vec</span>&lt;<span class="hljs-type">i32</span>&gt; = <span class="hljs-built_in">vec!</span>[];
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">b</span> = a;
+b.<span class="hljs-title function_ invoke__">push</span>(<span class="hljs-number">5</span>);
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;a size: {}&quot;</span>, a.<span class="hljs-title function_ invoke__">len</span>());
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;b size: {}&quot;</span>, b.<span class="hljs-title function_ invoke__">len</span>());
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h2 id="the-three-types">The three types</h2>
+<ul>
+<li>Value</li>
+<li>Reference</li>
+<li>Mutable Reference</li>
+</ul>
+<h3 id="the-three-simple-rules">The three simple rules</h3>
+<h4 id="rule-1-value">Rule #1: Value</h4>
+<p>Only one value owner.</p>
+<h5 id="note">Note</h5>
+<p>If the object implements copy, it can be implicitly copied</p>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">let</span> <span class="hljs-variable">x</span> = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">let</span> <span class="hljs-variable">y</span> = x;
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, x + y);
+</code></pre>
+<h4 id="rule-2-reference">Rule #2: Reference</h4>
+<p>You can have as many references as you like with the constraint that there are
+no mutable references alive.</p>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">let</span> <span class="hljs-variable">x</span> = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">let</span> <span class="hljs-variable">y</span> = &amp;x;
+
+<span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;here is {} and {}&quot;</span>, x, y);
+</code></pre>
+<h4 id="rule-31-mut-reference">Rule #3:1 Mut Reference</h4>
+<p>You can have one mut reference and no reference at the same time.</p>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">x</span> = <span class="hljs-number">5</span>;
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">y</span> = &amp;x;
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">z</span> = &amp;<span class="hljs-keyword">mut</span> x; <span class="hljs-comment">// cannot borrow x as mutable</span>
+                    <span class="hljs-comment">// because its already as immutable</span>
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, x + y + z);
+}
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="questions">Questions?</h3>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="moar-things-to-cover">Moar things to cover</h3>
+<ul>
+<li>Rust + Enums (Options)<ul>
+<li>Options</li>
+</ul>
+</li>
+<li>Error Handling<ul>
+<li>Results</li>
+</ul>
+</li>
+<li>Testing</li>
+</ul>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="enums">Enums</h3>
+<p>Lets look at emuns in typescript, go, and rust.</p>
+<p>First typescript, lets program up a quick example.</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="i-should-have-typed-something-like-this">I should have typed something like this.</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Thing</span> {
+    <span class="hljs-title class_">Foo</span> = <span class="hljs-number">1</span>, <span class="hljs-comment">// or give them no value and it will start at 0 and increment</span>
+    <span class="hljs-title class_">Bar</span> = <span class="hljs-number">2</span>,
+    <span class="hljs-title class_">Baz</span> = <span class="hljs-number">3</span>,
+}
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="what-about-go">What about go?</h3>
+<p>Onto another example!</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="code">Code</h3>
+<pre><code class="hljs language-go"><span class="hljs-keyword">type</span> Foo = <span class="hljs-type">int</span>
+
+<span class="hljs-keyword">const</span> (
+    Thing Foo = <span class="hljs-literal">iota</span>
+    Other
+    That
+)
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="now-rust">Now Rust</h3>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="or-is-this-typescirpt">Or is this typescirpt?</h3>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Thing</span> {
+    Foo, <span class="hljs-comment">// or give them no value and it will start at 0 and increment</span>
+    Bar,
+    Baz,
+}
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="why-go-over-enums">Why go over enums...</h3>
+<p>They are simple constructs.  Well, they are simple in other languages.</p>
+<p>Lets dive more into them with rust.  Let me show you how you can add types...</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="what-my-code-should-of-approximately-looked-like">What my code should of approximately looked like</h3>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Option2</span> {
+    Baz,
+    <span class="hljs-title function_ invoke__">Foo</span>(<span class="hljs-type">isize</span>),
+    <span class="hljs-title function_ invoke__">Bar</span>(<span class="hljs-type">String</span>),
+    <span class="hljs-title function_ invoke__">Fuzz</span>(<span class="hljs-type">Vec</span>&lt;<span class="hljs-type">String</span>&gt;), <span class="hljs-comment">// string[], or a []string</span>
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">opt2</span> = Option2::<span class="hljs-title function_ invoke__">Foo</span>(<span class="hljs-number">5</span>);
+
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">opt22</span> = Option2::<span class="hljs-title function_ invoke__">Fuzz</span>(<span class="hljs-built_in">vec!</span>[]);
+
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">Option2</span>::<span class="hljs-title function_ invoke__">Foo</span>(x) = opt2 {
+        <span class="hljs-keyword">let</span> <span class="hljs-variable">_</span> = x + <span class="hljs-number">5</span>;
+        <span class="hljs-comment">// x = 7;</span>
+    }
+
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">Option2</span>::<span class="hljs-title function_ invoke__">Fuzz</span>(vec) = &amp;<span class="hljs-keyword">mut</span> opt22 {
+        vec.<span class="hljs-title function_ invoke__">push</span>(String::<span class="hljs-title function_ invoke__">from</span>(<span class="hljs-string">&quot;Hello, world!&quot;</span>));
+    }
+
+    <span class="hljs-keyword">match</span> opt2 {
+        Option2::Baz =&gt; todo!(),
+        Option2::<span class="hljs-title function_ invoke__">Foo</span>(_) =&gt; todo!(),
+        Option2::<span class="hljs-title function_ invoke__">Bar</span>(_) =&gt; todo!(),
+        Option2::<span class="hljs-title function_ invoke__">Fuzz</span>(_) =&gt; todo!(),
+    }
+}
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="what-does-this-mean">What does this mean?</h3>
+<p>This means that you can have an enum with many types, and these types can be
+generic.</p>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Foo</span>&lt;T&gt; {
+    <span class="hljs-title function_ invoke__">Bar</span>(T)
+}
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="but-how-is-this-practically-useful">But how is this practically useful?</h3>
+<p>3 things.</p>
+<ol>
+<li>lists with many types</li>
+<li>Nullable</li>
+<li>Error Handling</li>
+</ol>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="lets-start-with-nullable-and-typescript">Lets start with nullable and TypeScript</h3>
+<p>I think we have all seen code like this</p>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Foo</span> = {
+    bar?: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">test</span>(<span class="hljs-params">foo: Foo</span>) {
+    <span class="hljs-keyword">if</span> (foo.<span class="hljs-property">bar</span>) { <span class="hljs-comment">// this is annoying, yes</span>
+        <span class="hljs-comment">// undang</span>
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// dang</span>
+    }
+}
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="let-me-show-you-nullables-in-rust">Let me show you nullables in Rust</h3>
+<p>These are Options, they are enums, they have a generic.</p>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Option</span>&lt;T&gt; {
+    <span class="hljs-literal">None</span>,
+    <span class="hljs-title function_ invoke__">Some</span>(T)
+}
+</code></pre>
+<p>Lets see how you can play with these in Rust</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="potential-code-for-options">Potential code for options</h3>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Foo</span> {
+    bar: <span class="hljs-type">Option</span>&lt;<span class="hljs-type">i32</span>&gt;
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">foo</span> = Foo {
+        bar: <span class="hljs-literal">None</span>
+    };
+
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">foo2</span> = Foo {
+        bar: <span class="hljs-title function_ invoke__">Some</span>(<span class="hljs-number">2</span>)
+    };
+
+    <span class="hljs-keyword">if</span> foo.bar.<span class="hljs-title function_ invoke__">is_some</span>() {
+        <span class="hljs-keyword">let</span> <span class="hljs-variable">sum</span> = foo.bar.<span class="hljs-title function_ invoke__">unwrap</span>() + <span class="hljs-number">5</span>;
+    }
+
+    foo.bar.<span class="hljs-title function_ invoke__">unwrap_or</span>(<span class="hljs-number">0</span>);
+
+    foo.bar.<span class="hljs-title function_ invoke__">unwrap_or_else</span>(|| {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">5</span>;
+    });
+
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">out</span> = foo.bar.<span class="hljs-title function_ invoke__">map</span>(|x| {
+        <span class="hljs-keyword">return</span> x + <span class="hljs-number">5</span>;
+    });
+}
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="questions-so-far">Questions so far?</h3>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="lets-implement-the-option-enum">Lets implement the Option enum!</h3>
+<p>For fun lets try to implement <code>map</code> and <code>is_some</code> in rust on our &quot;option&quot; type.</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="results-of-this">Results of this</h3>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Option2</span>&lt;T&gt; {
+    <span class="hljs-literal">None</span>,
+    <span class="hljs-title function_ invoke__">Some</span>(T)
+}
+
+<span class="hljs-keyword">impl</span>&lt;T&gt; Option2&lt;T&gt; {
+    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">map</span>(&amp;<span class="hljs-keyword">self</span>, f: <span class="hljs-title function_ invoke__">fn</span>(&amp;T) <span class="hljs-punctuation">-&gt;</span> T) <span class="hljs-punctuation">-&gt;</span> Option2&lt;T&gt; {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">match</span> <span class="hljs-keyword">self</span> {
+            Option2::<span class="hljs-literal">None</span> =&gt; Option2::<span class="hljs-literal">None</span>,
+            Option2::<span class="hljs-title function_ invoke__">Some</span>(v) =&gt; Option2::<span class="hljs-title function_ invoke__">Some</span>(<span class="hljs-title function_ invoke__">f</span>(v)),
+        }
+    }
+
+    <span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">is_some</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">bool</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">match</span> <span class="hljs-keyword">self</span> {
+            Option2::<span class="hljs-literal">None</span> =&gt; <span class="hljs-literal">false</span>,
+            Option2::<span class="hljs-title function_ invoke__">Some</span>(_) =&gt; <span class="hljs-literal">true</span>,
+        }
+    }
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">opt</span> = <span class="hljs-title function_ invoke__">Some</span>(<span class="hljs-number">5</span>);
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">opt2</span> = Option2::<span class="hljs-title function_ invoke__">Some</span>(<span class="hljs-number">5</span>);
+
+    opt.<span class="hljs-title function_ invoke__">map</span>(|x| x + <span class="hljs-number">5</span>);
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">opt2</span> = opt2.<span class="hljs-title function_ invoke__">map</span>(|x| x + <span class="hljs-number">5</span>);
+
+    <span class="hljs-keyword">if</span> opt2.<span class="hljs-title function_ invoke__">is_some</span>() {
+
+    }
+}
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="questions--that-was-pretty-radical-section">Questions?  That was pretty radical section</h3>
+<p>Hopefully you can see the incredible value of sumtypes.</p>
+<p>There is this concept in 1984 that peoples ability to think is directly tied
+with the language they communicate with.  I think this is true in programming
+as well.  This is one of the reasons learning a ton of languages is REALLY
+beneficial.</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="what-about-error-handling">What about error handling?</h3>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="javascript-typescript">JavaScript (TypeScript)</h3>
+<p>&quot;Exceptions as control flow&quot;</p>
+<p>2 types of errors that you will run across.</p>
+<ol>
+<li>returned errors</li>
+<li>thrown errors</li>
+</ol>
+<p>Pretty classic javascriptism -- conflation issues</p>
+<p>Let me program you a live example!</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="code-1">Code</h3>
+<pre><code class="hljs language-typescript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;Goodbye, World&quot;</span>);
+}
+
+<span class="hljs-keyword">try</span> {
+    <span class="hljs-title function_">foo</span>();
+} <span class="hljs-keyword">catch</span> (e) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;We had a problem, but we are ok&quot;</span>, e);
+}
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;great success()&quot;</span>);
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<p>In general TypeScript uses exceptions for control flow and with promises its a
+mix of value vs throwing due to <code>.catch</code>.</p>
+<p>not all errors can be caught and will just simply blow up somewhere...</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="lets-look-at-go">Lets look at Go</h3>
+<p>We haven&#39;t done much of go, but it does differ here from typescript.</p>
+<p>This is one of the most fundamental arguments against and for go is its error
+handling. I will say that the error handling i find better than typescript but
+definitely more boilerplate to deal with it.</p>
+<p>The reason why i like it is because of control flow and where things can go
+wrong.</p>
+<h4 id="example-time">Example time!</h4>
+<p>Remember, errors are just values</p>
+<ul>
+<li>create error</li>
+<li>return error + struct</li>
+</ul>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="the-go-code">The go code</h3>
+<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+    <span class="hljs-string">&quot;errors&quot;</span>
+    <span class="hljs-string">&quot;fmt&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">example</span><span class="hljs-params">()</span></span> <span class="hljs-type">error</span> {
+    <span class="hljs-keyword">return</span> fmt.Errorf(<span class="hljs-string">&quot;here is an error with a string&quot;</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">otherExample</span><span class="hljs-params">()</span></span> <span class="hljs-type">error</span> {
+    <span class="hljs-keyword">return</span> errors.New(<span class="hljs-string">&quot;here is an error, but with errors&quot;</span>) <span class="hljs-comment">// approx same thing</span>
+}
+
+
+<span class="hljs-comment">// errors are pointers under the hood, so you can return the empty type</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">exampleNoError</span><span class="hljs-params">()</span></span> <span class="hljs-type">error</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>;
+}
+
+<span class="hljs-keyword">type</span> Thing <span class="hljs-keyword">struct</span> { }
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">exampleWithData</span><span class="hljs-params">(should <span class="hljs-type">bool</span>)</span></span> (*Thing, <span class="hljs-type">error</span>) {
+    <span class="hljs-keyword">if</span> should {
+        <span class="hljs-keyword">return</span> &amp;Thing{}, <span class="hljs-literal">nil</span>
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, fmt.Errorf(<span class="hljs-string">&quot;nice try, guy&quot;</span>)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    err := example();
+    <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+        <span class="hljs-comment">// handle error</span>
+    }
+
+    _, err = exampleWithData(<span class="hljs-literal">true</span>)
+    <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+        <span class="hljs-comment">// handle error</span>
+    }
+}
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="rust-1">Rust</h3>
+<p>Remember those enums (sumtypes) and how I told you they handled errors?  Well,
+here is the <code>Result</code> type.</p>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Result</span>&lt;V, E&gt; {
+    <span class="hljs-title function_ invoke__">Err</span>(E),
+    <span class="hljs-title function_ invoke__">Ok</span>(V)
+}
+</code></pre>
+<p>Lets make some examples of how to use them!</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="the-code-i-wrote-on-a-sunday-morning">The code I wrote on a sunday morning</h3>
+<p>I am sure there is a Johnny Cash reference somewhere around here.</p>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">error</span>(num: <span class="hljs-type">i32</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Result</span>&lt;(), <span class="hljs-type">usize</span>&gt; {
+    <span class="hljs-keyword">if</span> num &lt; <span class="hljs-number">0</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Err</span>((num * -<span class="hljs-number">1</span>) <span class="hljs-keyword">as</span> <span class="hljs-type">usize</span>);
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Ok</span>(());
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Result</span>&lt;(), <span class="hljs-type">usize</span>&gt; {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">res</span> = <span class="hljs-title function_ invoke__">error</span>(<span class="hljs-number">5</span>);
+
+    <span class="hljs-keyword">if</span> res.<span class="hljs-title function_ invoke__">is_ok</span>() {
+        <span class="hljs-comment">//...</span>
+    }
+
+    <span class="hljs-keyword">match</span> res {
+        <span class="hljs-title function_ invoke__">Err</span>(e) =&gt; <span class="hljs-comment">// ...</span>
+        <span class="hljs-title function_ invoke__">Ok</span>(v) =&gt; <span class="hljs-comment">// ...</span>
+    }
+
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">x</span> = res.<span class="hljs-title function_ invoke__">unwrap_or</span>(());
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">x</span> = res.<span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-string">&quot;THIS BETTER EXIST&quot;</span>);
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">x</span> = res.<span class="hljs-title function_ invoke__">unwrap</span>(); <span class="hljs-comment">// BAD</span>
+
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">x</span> = res?;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Ok</span>(());
+}
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="anyhow">Anyhow?</h3>
+<p>A nice library for writing great code with error handling is anyhow!  Lets look
+at it</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="unit-testing">Unit Testing!</h3>
+<ul>
+<li>TypeScript : Cries in Configuration</li>
+<li>GoLang : Meh</li>
+<li>Rust : oyes</li>
+</ul>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<pre><code class="hljs language-bash">src/__tests__/test.ts
+</code></pre>
+<pre><code class="hljs language-typescript"><span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-title function_">expect</span>(<span class="hljs-string">&quot;foo&quot;</span>).<span class="hljs-title function_">toEqual</span>(<span class="hljs-string">&quot;foo&quot;</span>);
+});
+</code></pre>
+<pre><code class="hljs language-bash">yarn add jest ts-jest @types/jest
+npx jest
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="go-version">Go version</h3>
+<p>there is some contention with how / where to put your tests.</p>
+<ul>
+<li>test public interfaces only</li>
+<li>test within the package</li>
+</ul>
+<pre><code>pkg/name/file.go
+pkg/name/file_test.go
+</code></pre>
+<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> name_test
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;testing&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">TestThisFunc</span><span class="hljs-params">(t *testing.T)</span></span> {
+    this := <span class="hljs-number">5</span>
+    <span class="hljs-keyword">if</span> this != <span class="hljs-number">7</span> {
+        t.Errorf(<span class="hljs-string">&quot;expected %v to equal 7&quot;</span>, this)
+    }
+}
+</code></pre>
+<pre><code class="hljs language-bash">go <span class="hljs-built_in">test</span> ./...
+go <span class="hljs-built_in">test</span> ./path/to/package
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="go-does-have-an-assertion-library">Go does have an assertion library</h3>
+<p>But we will not be using it.  We will just use what is built in during this
+course.</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="rust-version">Rust Version</h3>
+<p>Rust, of course, is the best</p>
+<ul>
+<li>test in file</li>
+<li>One thing to be careful of is to what level private interfaces should be
+tested.</li>
+</ul>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<pre><code>... // code ...
+
+#[cfg(test)]
+mod test {
+    #[test]
+    fn this_test() {
+        assert_eq!(5, 7);
+    }
+}
+</code></pre>
+<pre><code class="hljs language-bash">cargo <span class="hljs-built_in">test</span>
+cargo <span class="hljs-built_in">test</span> path/to/file.rs
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="you-will-forget-everything-i-just-said">You will forget everything i just said</h3>
+<p>That is ok.  The best way to make it set?  Build it.</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+</div><div class="lesson-links"><a href="/ts-go-rust/lessons/introduction/getting-started" class="prev">← Previous</a><a href="/ts-go-rust/lessons/part-1-getting-familiar/problem-1" class="next">Next →</a></div></div><div class="details-bg"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="154" height="154" viewBox="0 0 154 154"><defs><clipPath id="clip-path"><rect id="Rectangle_2238" data-name="Rectangle 2238" width="154" height="154" transform="translate(9467 350)" fill="#fff" stroke="#707070" stroke-width="1"></rect></clipPath><clipPath id="clip-corner-image-active"><rect width="154" height="154"></rect></clipPath></defs><g id="corner-image-active" clip-path="url(#clip-corner-image-active)"><g id="Corner-image-active-2" data-name="Corner-image-active" transform="translate(-9467 -350)" clip-path="url(#clip-path)"><path id="Subtraction_34" data-name="Subtraction 34" d="M-3857.365,1740.766h0l-7.07-7.07,12.89-12.89v14.142l-5.818,5.818Zm-14.142-14.142h0l-7.071-7.07,27.033-27.033v14.143l-19.96,19.96Zm-14.143-14.143h0l-7.07-7.069,41.175-41.175v14.142Zm-14.142-14.142h0l-7.07-7.069,55.317-55.317v14.142Zm-14.142-14.142h0l-7.07-7.069,69.459-69.459v14.142Zm-14.142-14.142h0l-7.07-7.069,76.739-76.739h6.862v7.28Zm-14.143-14.143h0l-7.07-7.069,62.6-62.6h14.142Zm-14.142-14.142h0l-7.07-7.069,48.454-48.454h14.142Zm-14.142-14.142h0l-7.07-7.069,34.312-34.312h14.142Zm-14.142-14.142h0l-7.07-7.069,20.17-20.17h14.142Zm-14.142-14.142h0l-7.071-7.071,6.027-6.027h14.144l-13.1,13.1Zm367.24-56.114v-.909l.455.455-.453.453Z" transform="translate(13472.546 -1236.766)" fill="var(--corner-fill)"></path></g></g></svg></div></div></div></div><footer class="footer"><ul class="socials"><li class="social"><a href="https://twitter.com/theprimeagen"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="32" viewBox="0 0 40 32"><defs><clipPath id="clip-twitter-social"><rect width="40" height="32"></rect></clipPath></defs><g id="twitter-social" clip-path="url(#clip-twitter-social)"><g id="Group_269" data-name="Group 269" transform="translate(-230.23 -1140.849)"><path id="Path_419" data-name="Path 419" d="M266.12,1148.861v1.035a23.092,23.092,0,0,1-1.507,8.1,24.08,24.08,0,0,1-4.475,7.381,22.175,22.175,0,0,1-7.306,5.4,24.129,24.129,0,0,1-10,2.07,23.7,23.7,0,0,1-6.667-.945,22.83,22.83,0,0,1-5.936-2.655q.959.091,1.963.09a16.518,16.518,0,0,0,5.434-.9,17.111,17.111,0,0,0,4.749-2.52,8.275,8.275,0,0,1-4.749-1.643,7.8,7.8,0,0,1-2.877-3.983,8.268,8.268,0,0,0,1.507.135,8.58,8.58,0,0,0,2.146-.27,8.16,8.16,0,0,1-5.685-4.344,8.326,8.326,0,0,1-.89-3.578v-.135a7.775,7.775,0,0,0,3.744,1.035,8.183,8.183,0,0,1-2.671-2.9,7.817,7.817,0,0,1-.982-3.848,7.948,7.948,0,0,1,1.1-4.05,23.53,23.53,0,0,0,16.895,8.46,9.221,9.221,0,0,1-.183-1.845,7.787,7.787,0,0,1,1.1-4.05,8.216,8.216,0,0,1,2.991-2.948,7.991,7.991,0,0,1,4.087-1.1,8.184,8.184,0,0,1,5.982,2.566,16.087,16.087,0,0,0,5.205-1.98,7.784,7.784,0,0,1-1.393,2.588,8.4,8.4,0,0,1-2.215,1.913,16.856,16.856,0,0,0,4.749-1.305A17.032,17.032,0,0,1,266.12,1148.861Z" fill="var(--icons)"></path></g></g></svg></a></li><li class="social"><a href="https://twitch.tv/theprimeagen"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2.149 0l-1.612 4.119v16.836h5.731v3.045h3.224l3.045-3.045h4.657l6.269-6.269v-14.686h-21.314zm19.164 13.612l-3.582 3.582h-5.731l-3.045 3.045v-3.045h-4.836v-15.045h17.194v11.463zm-3.582-7.343v6.262h-2.149v-6.262h2.149zm-5.731 0v6.262h-2.149v-6.262h2.149z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></a></li><li class="social"><a href="https://youtube.com/theprimeagen"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2.149 0l-1.612 4.119v16.836h5.731v3.045h3.224l3.045-3.045h4.657l6.269-6.269v-14.686h-21.314zm19.164 13.612l-3.582 3.582h-5.731l-3.045 3.045v-3.045h-4.836v-15.045h17.194v11.463zm-3.582-7.343v6.262h-2.149v-6.262h2.149zm-5.731 0v6.262h-2.149v-6.262h2.149z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></a></li><li class="social"><div class="terms"><p>Content Licensed Under CC-BY-NC-4.0</p><p>Code Samples and Excercises Licensed Under Apache 2.0</p><p>Site Designed by<!-- --> <!-- --><a href="https://www.alexdanielson.com/">Alex Danielson</a></p></div></li></ul></footer></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"attributes":{"description":"Let me borrow that for a moment"},"html":"\u003ch2 id=\"the-fundamentals-of-the-languages\"\u003eThe fundamentals of the languages.\u003c/h2\u003e\n\u003cp\u003eWe are going to go over some fundamentals of each language to hopefully make\nthe transitioning easier between these 3 languages.\u003c/p\u003e\n\u003cbr /\u003e\n\n\u003cp\u003eRemember, this is fast paced, but there is room for questions, as I have even\nmade explicit stops.  If you are viewing this live on FrontEndMasters.com or\ntwitch.tv/ThePrimeagen and have a question, please feel free to throw it in the\nchat and hopefully I can answer it!\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"syntax\"\u003eSyntax\u003c/h3\u003e\n\u003cp\u003eI am not going to cover language specifics and syntax.\u003c/p\u003e\n\u003cp\u003eExample: what happens here?  If you have some experience with rust, please\ndon\u0026#39;t answer.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003efoo\u003c/span\u003e = \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e boolean_statement {\n    \u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e\n} \u003cspan class=\"hljs-keyword\"\u003eelse\u003c/span\u003e {\n    \u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e\n};\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"typescript-version\"\u003eTypeScript version\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-typescript\"\u003e\u003cspan class=\"hljs-keyword\"\u003econst\u003c/span\u003e foo = boolean_statement ? \u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e : \u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e;\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\n\u003cp\u003eSo if you do have a question, speak up during those times and I\u0026#39;ll go over\nanything specific.  But the goal here is to make a course that is geared\ntowards people who feel comfortable with programming and would like to pick up\na second or third language.\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"rust-borrow-checker\"\u003eRust Borrow Checker\u003c/h3\u003e\n\u003cp\u003eRust is famous for difficulty.  For its borrow checker.  There are memes and I\npersonally have rage quit using rust because I didn\u0026#39;t understand the basics of\nrust.\u003c/p\u003e\n\u003cp\u003eFrom the rearview mirror, this is simple\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch2 id=\"lets-start-with-other-programming-languages\"\u003eLets start with other programming languages\u003c/h2\u003e\n\u003ch3 id=\"javascript\"\u003eJavaScript\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-javascript\"\u003e\u003cspan class=\"hljs-keyword\"\u003econst\u003c/span\u003e a = [];\n\u003cspan class=\"hljs-keyword\"\u003econst\u003c/span\u003e b = a;\nb.\u003cspan class=\"hljs-title function_\"\u003epush\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e);\n\u003cspan class=\"hljs-variable language_\"\u003econsole\u003c/span\u003e.\u003cspan class=\"hljs-title function_\"\u003elog\u003c/span\u003e(a);\n\u003cspan class=\"hljs-variable language_\"\u003econsole\u003c/span\u003e.\u003cspan class=\"hljs-title function_\"\u003elog\u003c/span\u003e(b);\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"c\"\u003eC++\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-cpp\"\u003estd::vector\u0026lt;\u003cspan class=\"hljs-type\"\u003eint\u003c/span\u003e\u0026gt; a;\nstd::vector\u0026lt;\u003cspan class=\"hljs-type\"\u003eint\u003c/span\u003e\u0026gt; b = a;\nb.\u003cspan class=\"hljs-built_in\"\u003epush_back\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e);\n\n\u003cspan class=\"hljs-built_in\"\u003eprintf\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;a size: %zu\\n\u0026quot;\u003c/span\u003e, a.\u003cspan class=\"hljs-built_in\"\u003esize\u003c/span\u003e());\n\u003cspan class=\"hljs-built_in\"\u003eprintf\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;b size: %zu\\n\u0026quot;\u003c/span\u003e, b.\u003cspan class=\"hljs-built_in\"\u003esize\u003c/span\u003e());\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"rust\"\u003eRust\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003ea\u003c/span\u003e: \u003cspan class=\"hljs-type\"\u003eVec\u003c/span\u003e\u0026lt;\u003cspan class=\"hljs-type\"\u003ei32\u003c/span\u003e\u0026gt; = \u003cspan class=\"hljs-built_in\"\u003evec!\u003c/span\u003e[];\n\u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003emut \u003c/span\u003e\u003cspan class=\"hljs-variable\"\u003eb\u003c/span\u003e = a;\nb.\u003cspan class=\"hljs-title function_ invoke__\"\u003epush\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e);\n\n\u003cspan class=\"hljs-built_in\"\u003eprintln!\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;a size: {}\u0026quot;\u003c/span\u003e, a.\u003cspan class=\"hljs-title function_ invoke__\"\u003elen\u003c/span\u003e());\n\u003cspan class=\"hljs-built_in\"\u003eprintln!\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;b size: {}\u0026quot;\u003c/span\u003e, b.\u003cspan class=\"hljs-title function_ invoke__\"\u003elen\u003c/span\u003e());\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch2 id=\"the-three-types\"\u003eThe three types\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003eValue\u003c/li\u003e\n\u003cli\u003eReference\u003c/li\u003e\n\u003cli\u003eMutable Reference\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"the-three-simple-rules\"\u003eThe three simple rules\u003c/h3\u003e\n\u003ch4 id=\"rule-1-value\"\u003eRule #1: Value\u003c/h4\u003e\n\u003cp\u003eOnly one value owner.\u003c/p\u003e\n\u003ch5 id=\"note\"\u003eNote\u003c/h5\u003e\n\u003cp\u003eIf the object implements copy, it can be implicitly copied\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003ex\u003c/span\u003e = \u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e;\n\u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003ey\u003c/span\u003e = x;\n\n\u003cspan class=\"hljs-built_in\"\u003eprintln!\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;{}\u0026quot;\u003c/span\u003e, x + y);\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch4 id=\"rule-2-reference\"\u003eRule #2: Reference\u003c/h4\u003e\n\u003cp\u003eYou can have as many references as you like with the constraint that there are\nno mutable references alive.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003ex\u003c/span\u003e = \u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e;\n\u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003ey\u003c/span\u003e = \u0026amp;x;\n\n\u003cspan class=\"hljs-built_in\"\u003eprintln!\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;here is {} and {}\u0026quot;\u003c/span\u003e, x, y);\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch4 id=\"rule-31-mut-reference\"\u003eRule #3:1 Mut Reference\u003c/h4\u003e\n\u003cp\u003eYou can have one mut reference and no reference at the same time.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003efn\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003emain\u003c/span\u003e() {\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003emut \u003c/span\u003e\u003cspan class=\"hljs-variable\"\u003ex\u003c/span\u003e = \u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e;\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003ey\u003c/span\u003e = \u0026amp;x;\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003ez\u003c/span\u003e = \u0026amp;\u003cspan class=\"hljs-keyword\"\u003emut\u003c/span\u003e x; \u003cspan class=\"hljs-comment\"\u003e// cannot borrow x as mutable\u003c/span\u003e\n                    \u003cspan class=\"hljs-comment\"\u003e// because its already as immutable\u003c/span\u003e\n    \u003cspan class=\"hljs-built_in\"\u003eprintln!\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;{}\u0026quot;\u003c/span\u003e, x + y + z);\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"questions\"\u003eQuestions?\u003c/h3\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"moar-things-to-cover\"\u003eMoar things to cover\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eRust + Enums (Options)\u003cul\u003e\n\u003cli\u003eOptions\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eError Handling\u003cul\u003e\n\u003cli\u003eResults\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eTesting\u003c/li\u003e\n\u003c/ul\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"enums\"\u003eEnums\u003c/h3\u003e\n\u003cp\u003eLets look at emuns in typescript, go, and rust.\u003c/p\u003e\n\u003cp\u003eFirst typescript, lets program up a quick example.\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"i-should-have-typed-something-like-this\"\u003eI should have typed something like this.\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-typescript\"\u003e\u003cspan class=\"hljs-keyword\"\u003eenum\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eThing\u003c/span\u003e {\n    \u003cspan class=\"hljs-title class_\"\u003eFoo\u003c/span\u003e = \u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e, \u003cspan class=\"hljs-comment\"\u003e// or give them no value and it will start at 0 and increment\u003c/span\u003e\n    \u003cspan class=\"hljs-title class_\"\u003eBar\u003c/span\u003e = \u003cspan class=\"hljs-number\"\u003e2\u003c/span\u003e,\n    \u003cspan class=\"hljs-title class_\"\u003eBaz\u003c/span\u003e = \u003cspan class=\"hljs-number\"\u003e3\u003c/span\u003e,\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"what-about-go\"\u003eWhat about go?\u003c/h3\u003e\n\u003cp\u003eOnto another example!\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"code\"\u003eCode\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-go\"\u003e\u003cspan class=\"hljs-keyword\"\u003etype\u003c/span\u003e Foo = \u003cspan class=\"hljs-type\"\u003eint\u003c/span\u003e\n\n\u003cspan class=\"hljs-keyword\"\u003econst\u003c/span\u003e (\n    Thing Foo = \u003cspan class=\"hljs-literal\"\u003eiota\u003c/span\u003e\n    Other\n    That\n)\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"now-rust\"\u003eNow Rust\u003c/h3\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"or-is-this-typescirpt\"\u003eOr is this typescirpt?\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003eenum\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eThing\u003c/span\u003e {\n    Foo, \u003cspan class=\"hljs-comment\"\u003e// or give them no value and it will start at 0 and increment\u003c/span\u003e\n    Bar,\n    Baz,\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"why-go-over-enums\"\u003eWhy go over enums...\u003c/h3\u003e\n\u003cp\u003eThey are simple constructs.  Well, they are simple in other languages.\u003c/p\u003e\n\u003cp\u003eLets dive more into them with rust.  Let me show you how you can add types...\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"what-my-code-should-of-approximately-looked-like\"\u003eWhat my code should of approximately looked like\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003eenum\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eOption2\u003c/span\u003e {\n    Baz,\n    \u003cspan class=\"hljs-title function_ invoke__\"\u003eFoo\u003c/span\u003e(\u003cspan class=\"hljs-type\"\u003eisize\u003c/span\u003e),\n    \u003cspan class=\"hljs-title function_ invoke__\"\u003eBar\u003c/span\u003e(\u003cspan class=\"hljs-type\"\u003eString\u003c/span\u003e),\n    \u003cspan class=\"hljs-title function_ invoke__\"\u003eFuzz\u003c/span\u003e(\u003cspan class=\"hljs-type\"\u003eVec\u003c/span\u003e\u0026lt;\u003cspan class=\"hljs-type\"\u003eString\u003c/span\u003e\u0026gt;), \u003cspan class=\"hljs-comment\"\u003e// string[], or a []string\u003c/span\u003e\n}\n\n\u003cspan class=\"hljs-keyword\"\u003efn\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003emain\u003c/span\u003e() {\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003eopt2\u003c/span\u003e = Option2::\u003cspan class=\"hljs-title function_ invoke__\"\u003eFoo\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e);\n\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003emut \u003c/span\u003e\u003cspan class=\"hljs-variable\"\u003eopt22\u003c/span\u003e = Option2::\u003cspan class=\"hljs-title function_ invoke__\"\u003eFuzz\u003c/span\u003e(\u003cspan class=\"hljs-built_in\"\u003evec!\u003c/span\u003e[]);\n\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003eOption2\u003c/span\u003e::\u003cspan class=\"hljs-title function_ invoke__\"\u003eFoo\u003c/span\u003e(x) = opt2 {\n        \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003e_\u003c/span\u003e = x + \u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e;\n        \u003cspan class=\"hljs-comment\"\u003e// x = 7;\u003c/span\u003e\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003eOption2\u003c/span\u003e::\u003cspan class=\"hljs-title function_ invoke__\"\u003eFuzz\u003c/span\u003e(vec) = \u0026amp;\u003cspan class=\"hljs-keyword\"\u003emut\u003c/span\u003e opt22 {\n        vec.\u003cspan class=\"hljs-title function_ invoke__\"\u003epush\u003c/span\u003e(String::\u003cspan class=\"hljs-title function_ invoke__\"\u003efrom\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;Hello, world!\u0026quot;\u003c/span\u003e));\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003ematch\u003c/span\u003e opt2 {\n        Option2::Baz =\u0026gt; todo!(),\n        Option2::\u003cspan class=\"hljs-title function_ invoke__\"\u003eFoo\u003c/span\u003e(_) =\u0026gt; todo!(),\n        Option2::\u003cspan class=\"hljs-title function_ invoke__\"\u003eBar\u003c/span\u003e(_) =\u0026gt; todo!(),\n        Option2::\u003cspan class=\"hljs-title function_ invoke__\"\u003eFuzz\u003c/span\u003e(_) =\u0026gt; todo!(),\n    }\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"what-does-this-mean\"\u003eWhat does this mean?\u003c/h3\u003e\n\u003cp\u003eThis means that you can have an enum with many types, and these types can be\ngeneric.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003eenum\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eFoo\u003c/span\u003e\u0026lt;T\u0026gt; {\n    \u003cspan class=\"hljs-title function_ invoke__\"\u003eBar\u003c/span\u003e(T)\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"but-how-is-this-practically-useful\"\u003eBut how is this practically useful?\u003c/h3\u003e\n\u003cp\u003e3 things.\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003elists with many types\u003c/li\u003e\n\u003cli\u003eNullable\u003c/li\u003e\n\u003cli\u003eError Handling\u003c/li\u003e\n\u003c/ol\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"lets-start-with-nullable-and-typescript\"\u003eLets start with nullable and TypeScript\u003c/h3\u003e\n\u003cp\u003eI think we have all seen code like this\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-typescript\"\u003e\u003cspan class=\"hljs-keyword\"\u003etype\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eFoo\u003c/span\u003e = {\n    bar?: \u003cspan class=\"hljs-built_in\"\u003enumber\u003c/span\u003e;\n}\n\n\u003cspan class=\"hljs-keyword\"\u003efunction\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003etest\u003c/span\u003e(\u003cspan class=\"hljs-params\"\u003efoo: Foo\u003c/span\u003e) {\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e (foo.\u003cspan class=\"hljs-property\"\u003ebar\u003c/span\u003e) { \u003cspan class=\"hljs-comment\"\u003e// this is annoying, yes\u003c/span\u003e\n        \u003cspan class=\"hljs-comment\"\u003e// undang\u003c/span\u003e\n    } \u003cspan class=\"hljs-keyword\"\u003eelse\u003c/span\u003e {\n        \u003cspan class=\"hljs-comment\"\u003e// dang\u003c/span\u003e\n    }\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"let-me-show-you-nullables-in-rust\"\u003eLet me show you nullables in Rust\u003c/h3\u003e\n\u003cp\u003eThese are Options, they are enums, they have a generic.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003eenum\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eOption\u003c/span\u003e\u0026lt;T\u0026gt; {\n    \u003cspan class=\"hljs-literal\"\u003eNone\u003c/span\u003e,\n    \u003cspan class=\"hljs-title function_ invoke__\"\u003eSome\u003c/span\u003e(T)\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eLets see how you can play with these in Rust\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"potential-code-for-options\"\u003ePotential code for options\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003estruct\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eFoo\u003c/span\u003e {\n    bar: \u003cspan class=\"hljs-type\"\u003eOption\u003c/span\u003e\u0026lt;\u003cspan class=\"hljs-type\"\u003ei32\u003c/span\u003e\u0026gt;\n}\n\n\u003cspan class=\"hljs-keyword\"\u003efn\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003emain\u003c/span\u003e() {\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003efoo\u003c/span\u003e = Foo {\n        bar: \u003cspan class=\"hljs-literal\"\u003eNone\u003c/span\u003e\n    };\n\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003efoo2\u003c/span\u003e = Foo {\n        bar: \u003cspan class=\"hljs-title function_ invoke__\"\u003eSome\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e2\u003c/span\u003e)\n    };\n\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e foo.bar.\u003cspan class=\"hljs-title function_ invoke__\"\u003eis_some\u003c/span\u003e() {\n        \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003esum\u003c/span\u003e = foo.bar.\u003cspan class=\"hljs-title function_ invoke__\"\u003eunwrap\u003c/span\u003e() + \u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e;\n    }\n\n    foo.bar.\u003cspan class=\"hljs-title function_ invoke__\"\u003eunwrap_or\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e);\n\n    foo.bar.\u003cspan class=\"hljs-title function_ invoke__\"\u003eunwrap_or_else\u003c/span\u003e(|| {\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e;\n    });\n\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003eout\u003c/span\u003e = foo.bar.\u003cspan class=\"hljs-title function_ invoke__\"\u003emap\u003c/span\u003e(|x| {\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e x + \u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e;\n    });\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"questions-so-far\"\u003eQuestions so far?\u003c/h3\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"lets-implement-the-option-enum\"\u003eLets implement the Option enum!\u003c/h3\u003e\n\u003cp\u003eFor fun lets try to implement \u003ccode\u003emap\u003c/code\u003e and \u003ccode\u003eis_some\u003c/code\u003e in rust on our \u0026quot;option\u0026quot; type.\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"results-of-this\"\u003eResults of this\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003eenum\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eOption2\u003c/span\u003e\u0026lt;T\u0026gt; {\n    \u003cspan class=\"hljs-literal\"\u003eNone\u003c/span\u003e,\n    \u003cspan class=\"hljs-title function_ invoke__\"\u003eSome\u003c/span\u003e(T)\n}\n\n\u003cspan class=\"hljs-keyword\"\u003eimpl\u003c/span\u003e\u0026lt;T\u0026gt; Option2\u0026lt;T\u0026gt; {\n    \u003cspan class=\"hljs-keyword\"\u003epub\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003efn\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003emap\u003c/span\u003e(\u0026amp;\u003cspan class=\"hljs-keyword\"\u003eself\u003c/span\u003e, f: \u003cspan class=\"hljs-title function_ invoke__\"\u003efn\u003c/span\u003e(\u0026amp;T) \u003cspan class=\"hljs-punctuation\"\u003e-\u0026gt;\u003c/span\u003e T) \u003cspan class=\"hljs-punctuation\"\u003e-\u0026gt;\u003c/span\u003e Option2\u0026lt;T\u0026gt; {\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003ematch\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003eself\u003c/span\u003e {\n            Option2::\u003cspan class=\"hljs-literal\"\u003eNone\u003c/span\u003e =\u0026gt; Option2::\u003cspan class=\"hljs-literal\"\u003eNone\u003c/span\u003e,\n            Option2::\u003cspan class=\"hljs-title function_ invoke__\"\u003eSome\u003c/span\u003e(v) =\u0026gt; Option2::\u003cspan class=\"hljs-title function_ invoke__\"\u003eSome\u003c/span\u003e(\u003cspan class=\"hljs-title function_ invoke__\"\u003ef\u003c/span\u003e(v)),\n        }\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003epub\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003efn\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003eis_some\u003c/span\u003e(\u0026amp;\u003cspan class=\"hljs-keyword\"\u003eself\u003c/span\u003e) \u003cspan class=\"hljs-punctuation\"\u003e-\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-type\"\u003ebool\u003c/span\u003e {\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003ematch\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003eself\u003c/span\u003e {\n            Option2::\u003cspan class=\"hljs-literal\"\u003eNone\u003c/span\u003e =\u0026gt; \u003cspan class=\"hljs-literal\"\u003efalse\u003c/span\u003e,\n            Option2::\u003cspan class=\"hljs-title function_ invoke__\"\u003eSome\u003c/span\u003e(_) =\u0026gt; \u003cspan class=\"hljs-literal\"\u003etrue\u003c/span\u003e,\n        }\n    }\n}\n\n\u003cspan class=\"hljs-keyword\"\u003efn\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003emain\u003c/span\u003e() {\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003eopt\u003c/span\u003e = \u003cspan class=\"hljs-title function_ invoke__\"\u003eSome\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e);\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003eopt2\u003c/span\u003e = Option2::\u003cspan class=\"hljs-title function_ invoke__\"\u003eSome\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e);\n\n    opt.\u003cspan class=\"hljs-title function_ invoke__\"\u003emap\u003c/span\u003e(|x| x + \u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e);\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003eopt2\u003c/span\u003e = opt2.\u003cspan class=\"hljs-title function_ invoke__\"\u003emap\u003c/span\u003e(|x| x + \u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e);\n\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e opt2.\u003cspan class=\"hljs-title function_ invoke__\"\u003eis_some\u003c/span\u003e() {\n\n    }\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"questions--that-was-pretty-radical-section\"\u003eQuestions?  That was pretty radical section\u003c/h3\u003e\n\u003cp\u003eHopefully you can see the incredible value of sumtypes.\u003c/p\u003e\n\u003cp\u003eThere is this concept in 1984 that peoples ability to think is directly tied\nwith the language they communicate with.  I think this is true in programming\nas well.  This is one of the reasons learning a ton of languages is REALLY\nbeneficial.\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"what-about-error-handling\"\u003eWhat about error handling?\u003c/h3\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"javascript-typescript\"\u003eJavaScript (TypeScript)\u003c/h3\u003e\n\u003cp\u003e\u0026quot;Exceptions as control flow\u0026quot;\u003c/p\u003e\n\u003cp\u003e2 types of errors that you will run across.\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003ereturned errors\u003c/li\u003e\n\u003cli\u003ethrown errors\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003ePretty classic javascriptism -- conflation issues\u003c/p\u003e\n\u003cp\u003eLet me program you a live example!\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"code-1\"\u003eCode\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-typescript\"\u003e\u003cspan class=\"hljs-keyword\"\u003efunction\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003efoo\u003c/span\u003e(\u003cspan class=\"hljs-params\"\u003e\u003c/span\u003e) {\n    \u003cspan class=\"hljs-keyword\"\u003ethrow\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003enew\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eError\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;Goodbye, World\u0026quot;\u003c/span\u003e);\n}\n\n\u003cspan class=\"hljs-keyword\"\u003etry\u003c/span\u003e {\n    \u003cspan class=\"hljs-title function_\"\u003efoo\u003c/span\u003e();\n} \u003cspan class=\"hljs-keyword\"\u003ecatch\u003c/span\u003e (e) {\n    \u003cspan class=\"hljs-variable language_\"\u003econsole\u003c/span\u003e.\u003cspan class=\"hljs-title function_\"\u003elog\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;We had a problem, but we are ok\u0026quot;\u003c/span\u003e, e);\n}\n\n\u003cspan class=\"hljs-variable language_\"\u003econsole\u003c/span\u003e.\u003cspan class=\"hljs-title function_\"\u003elog\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;great success()\u0026quot;\u003c/span\u003e);\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003cp\u003eIn general TypeScript uses exceptions for control flow and with promises its a\nmix of value vs throwing due to \u003ccode\u003e.catch\u003c/code\u003e.\u003c/p\u003e\n\u003cp\u003enot all errors can be caught and will just simply blow up somewhere...\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"lets-look-at-go\"\u003eLets look at Go\u003c/h3\u003e\n\u003cp\u003eWe haven\u0026#39;t done much of go, but it does differ here from typescript.\u003c/p\u003e\n\u003cp\u003eThis is one of the most fundamental arguments against and for go is its error\nhandling. I will say that the error handling i find better than typescript but\ndefinitely more boilerplate to deal with it.\u003c/p\u003e\n\u003cp\u003eThe reason why i like it is because of control flow and where things can go\nwrong.\u003c/p\u003e\n\u003ch4 id=\"example-time\"\u003eExample time!\u003c/h4\u003e\n\u003cp\u003eRemember, errors are just values\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ecreate error\u003c/li\u003e\n\u003cli\u003ereturn error + struct\u003c/li\u003e\n\u003c/ul\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"the-go-code\"\u003eThe go code\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-go\"\u003e\u003cspan class=\"hljs-keyword\"\u003epackage\u003c/span\u003e main\n\n\u003cspan class=\"hljs-keyword\"\u003eimport\u003c/span\u003e (\n    \u003cspan class=\"hljs-string\"\u003e\u0026quot;errors\u0026quot;\u003c/span\u003e\n    \u003cspan class=\"hljs-string\"\u003e\u0026quot;fmt\u0026quot;\u003c/span\u003e\n)\n\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003efunc\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eexample\u003c/span\u003e\u003cspan class=\"hljs-params\"\u003e()\u003c/span\u003e\u003c/span\u003e \u003cspan class=\"hljs-type\"\u003eerror\u003c/span\u003e {\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e fmt.Errorf(\u003cspan class=\"hljs-string\"\u003e\u0026quot;here is an error with a string\u0026quot;\u003c/span\u003e);\n}\n\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003efunc\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eotherExample\u003c/span\u003e\u003cspan class=\"hljs-params\"\u003e()\u003c/span\u003e\u003c/span\u003e \u003cspan class=\"hljs-type\"\u003eerror\u003c/span\u003e {\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e errors.New(\u003cspan class=\"hljs-string\"\u003e\u0026quot;here is an error, but with errors\u0026quot;\u003c/span\u003e) \u003cspan class=\"hljs-comment\"\u003e// approx same thing\u003c/span\u003e\n}\n\n\n\u003cspan class=\"hljs-comment\"\u003e// errors are pointers under the hood, so you can return the empty type\u003c/span\u003e\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003efunc\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eexampleNoError\u003c/span\u003e\u003cspan class=\"hljs-params\"\u003e()\u003c/span\u003e\u003c/span\u003e \u003cspan class=\"hljs-type\"\u003eerror\u003c/span\u003e {\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-literal\"\u003enil\u003c/span\u003e;\n}\n\n\u003cspan class=\"hljs-keyword\"\u003etype\u003c/span\u003e Thing \u003cspan class=\"hljs-keyword\"\u003estruct\u003c/span\u003e { }\n\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003efunc\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eexampleWithData\u003c/span\u003e\u003cspan class=\"hljs-params\"\u003e(should \u003cspan class=\"hljs-type\"\u003ebool\u003c/span\u003e)\u003c/span\u003e\u003c/span\u003e (*Thing, \u003cspan class=\"hljs-type\"\u003eerror\u003c/span\u003e) {\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e should {\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u0026amp;Thing{}, \u003cspan class=\"hljs-literal\"\u003enil\u003c/span\u003e\n    }\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-literal\"\u003enil\u003c/span\u003e, fmt.Errorf(\u003cspan class=\"hljs-string\"\u003e\u0026quot;nice try, guy\u0026quot;\u003c/span\u003e)\n}\n\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003efunc\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003emain\u003c/span\u003e\u003cspan class=\"hljs-params\"\u003e()\u003c/span\u003e\u003c/span\u003e {\n    err := example();\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e err != \u003cspan class=\"hljs-literal\"\u003enil\u003c/span\u003e {\n        \u003cspan class=\"hljs-comment\"\u003e// handle error\u003c/span\u003e\n    }\n\n    _, err = exampleWithData(\u003cspan class=\"hljs-literal\"\u003etrue\u003c/span\u003e)\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e err != \u003cspan class=\"hljs-literal\"\u003enil\u003c/span\u003e {\n        \u003cspan class=\"hljs-comment\"\u003e// handle error\u003c/span\u003e\n    }\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"rust-1\"\u003eRust\u003c/h3\u003e\n\u003cp\u003eRemember those enums (sumtypes) and how I told you they handled errors?  Well,\nhere is the \u003ccode\u003eResult\u003c/code\u003e type.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003etype\u003c/span\u003e \u003cspan class=\"hljs-title class_\"\u003eResult\u003c/span\u003e\u0026lt;V, E\u0026gt; {\n    \u003cspan class=\"hljs-title function_ invoke__\"\u003eErr\u003c/span\u003e(E),\n    \u003cspan class=\"hljs-title function_ invoke__\"\u003eOk\u003c/span\u003e(V)\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eLets make some examples of how to use them!\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"the-code-i-wrote-on-a-sunday-morning\"\u003eThe code I wrote on a sunday morning\u003c/h3\u003e\n\u003cp\u003eI am sure there is a Johnny Cash reference somewhere around here.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003efn\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003eerror\u003c/span\u003e(num: \u003cspan class=\"hljs-type\"\u003ei32\u003c/span\u003e) \u003cspan class=\"hljs-punctuation\"\u003e-\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-type\"\u003eResult\u003c/span\u003e\u0026lt;(), \u003cspan class=\"hljs-type\"\u003eusize\u003c/span\u003e\u0026gt; {\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e num \u0026lt; \u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e {\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eErr\u003c/span\u003e((num * -\u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e) \u003cspan class=\"hljs-keyword\"\u003eas\u003c/span\u003e \u003cspan class=\"hljs-type\"\u003eusize\u003c/span\u003e);\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eOk\u003c/span\u003e(());\n}\n\n\u003cspan class=\"hljs-keyword\"\u003efn\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003emain\u003c/span\u003e() \u003cspan class=\"hljs-punctuation\"\u003e-\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-type\"\u003eResult\u003c/span\u003e\u0026lt;(), \u003cspan class=\"hljs-type\"\u003eusize\u003c/span\u003e\u0026gt; {\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003eres\u003c/span\u003e = \u003cspan class=\"hljs-title function_ invoke__\"\u003eerror\u003c/span\u003e(\u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e);\n\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e res.\u003cspan class=\"hljs-title function_ invoke__\"\u003eis_ok\u003c/span\u003e() {\n        \u003cspan class=\"hljs-comment\"\u003e//...\u003c/span\u003e\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003ematch\u003c/span\u003e res {\n        \u003cspan class=\"hljs-title function_ invoke__\"\u003eErr\u003c/span\u003e(e) =\u0026gt; \u003cspan class=\"hljs-comment\"\u003e// ...\u003c/span\u003e\n        \u003cspan class=\"hljs-title function_ invoke__\"\u003eOk\u003c/span\u003e(v) =\u0026gt; \u003cspan class=\"hljs-comment\"\u003e// ...\u003c/span\u003e\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003ex\u003c/span\u003e = res.\u003cspan class=\"hljs-title function_ invoke__\"\u003eunwrap_or\u003c/span\u003e(());\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003ex\u003c/span\u003e = res.\u003cspan class=\"hljs-title function_ invoke__\"\u003eexpect\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;THIS BETTER EXIST\u0026quot;\u003c/span\u003e);\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003ex\u003c/span\u003e = res.\u003cspan class=\"hljs-title function_ invoke__\"\u003eunwrap\u003c/span\u003e(); \u003cspan class=\"hljs-comment\"\u003e// BAD\u003c/span\u003e\n\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003ex\u003c/span\u003e = res?;\n\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eOk\u003c/span\u003e(());\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"anyhow\"\u003eAnyhow?\u003c/h3\u003e\n\u003cp\u003eA nice library for writing great code with error handling is anyhow!  Lets look\nat it\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"unit-testing\"\u003eUnit Testing!\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eTypeScript : Cries in Configuration\u003c/li\u003e\n\u003cli\u003eGoLang : Meh\u003c/li\u003e\n\u003cli\u003eRust : oyes\u003c/li\u003e\n\u003c/ul\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003cpre\u003e\u003ccode class=\"hljs language-bash\"\u003esrc/__tests__/test.ts\n\u003c/code\u003e\u003c/pre\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-typescript\"\u003e\u003cspan class=\"hljs-title function_\"\u003etest\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;foo\u0026quot;\u003c/span\u003e, \u003cspan class=\"hljs-keyword\"\u003efunction\u003c/span\u003e(\u003cspan class=\"hljs-params\"\u003e\u003c/span\u003e) {\n    \u003cspan class=\"hljs-title function_\"\u003eexpect\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;foo\u0026quot;\u003c/span\u003e).\u003cspan class=\"hljs-title function_\"\u003etoEqual\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;foo\u0026quot;\u003c/span\u003e);\n});\n\u003c/code\u003e\u003c/pre\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-bash\"\u003eyarn add jest ts-jest @types/jest\nnpx jest\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"go-version\"\u003eGo version\u003c/h3\u003e\n\u003cp\u003ethere is some contention with how / where to put your tests.\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003etest public interfaces only\u003c/li\u003e\n\u003cli\u003etest within the package\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\u003ccode\u003epkg/name/file.go\npkg/name/file_test.go\n\u003c/code\u003e\u003c/pre\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-go\"\u003e\u003cspan class=\"hljs-keyword\"\u003epackage\u003c/span\u003e name_test\n\n\u003cspan class=\"hljs-keyword\"\u003eimport\u003c/span\u003e \u003cspan class=\"hljs-string\"\u003e\u0026quot;testing\u0026quot;\u003c/span\u003e\n\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003efunc\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eTestThisFunc\u003c/span\u003e\u003cspan class=\"hljs-params\"\u003e(t *testing.T)\u003c/span\u003e\u003c/span\u003e {\n    this := \u003cspan class=\"hljs-number\"\u003e5\u003c/span\u003e\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e this != \u003cspan class=\"hljs-number\"\u003e7\u003c/span\u003e {\n        t.Errorf(\u003cspan class=\"hljs-string\"\u003e\u0026quot;expected %v to equal 7\u0026quot;\u003c/span\u003e, this)\n    }\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-bash\"\u003ego \u003cspan class=\"hljs-built_in\"\u003etest\u003c/span\u003e ./...\ngo \u003cspan class=\"hljs-built_in\"\u003etest\u003c/span\u003e ./path/to/package\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"go-does-have-an-assertion-library\"\u003eGo does have an assertion library\u003c/h3\u003e\n\u003cp\u003eBut we will not be using it.  We will just use what is built in during this\ncourse.\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"rust-version\"\u003eRust Version\u003c/h3\u003e\n\u003cp\u003eRust, of course, is the best\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003etest in file\u003c/li\u003e\n\u003cli\u003eOne thing to be careful of is to what level private interfaces should be\ntested.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003cpre\u003e\u003ccode\u003e... // code ...\n\n#[cfg(test)]\nmod test {\n    #[test]\n    fn this_test() {\n        assert_eq!(5, 7);\n    }\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-bash\"\u003ecargo \u003cspan class=\"hljs-built_in\"\u003etest\u003c/span\u003e\ncargo \u003cspan class=\"hljs-built_in\"\u003etest\u003c/span\u003e path/to/file.rs\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"you-will-forget-everything-i-just-said\"\u003eYou will forget everything i just said\u003c/h3\u003e\n\u003cp\u003eThat is ok.  The best way to make it set?  Build it.\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n","slug":"ts-go-rust-fundamentals","title":"Ts Go Rust Fundamentals","section":"Part 1 Getting Familiar","icon":"dumpster-fire","filePath":"/home/runner/work/ts-go-rust/ts-go-rust/lessons/02-part-1-getting-familiar/A-ts-go-rust-fundamentals.md","nextSlug":"/ts-go-rust/lessons/part-1-getting-familiar/problem-1","prevSlug":"/ts-go-rust/lessons/introduction/getting-started"}},"__N_SSG":true},"page":"/lessons/[section]/[slug]","query":{"section":"part-1-getting-familiar","slug":"ts-go-rust-fundamentals"},"buildId":"shYjf6s3vWh7Zgh2SM54Y","assetPrefix":"/ts-go-rust","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

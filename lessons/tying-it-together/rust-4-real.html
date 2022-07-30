@@ -1,0 +1,140 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><title>Rust is the bestest – Polyglot Programming - TS, Go, and Rust</title><meta name="description" content="This course is designed for those that want to expand their knowledge to other languages by building a tool within the new language, and not reading yet another language tutorial.  This will be a fast paced, high octain learning experience."/><meta name="og:description" content="This course is designed for those that want to expand their knowledge to other languages by building a tool within the new language, and not reading yet another language tutorial.  This will be a fast paced, high octain learning experience."/><meta name="og:title" content="Rust is the bestest – Polyglot Programming - TS, Go, and Rust"/><meta name="og:image" content="/ts-go-rust/images/social-share-cover.jpg"/><meta name="twitter:card" content="summary_large_image"/><meta name="next-head-count" content="8"/><link rel="preload" href="/ts-go-rust/_next/static/css/dd3a156ae8df4e80.css" as="style"/><link rel="stylesheet" href="/ts-go-rust/_next/static/css/dd3a156ae8df4e80.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/ts-go-rust/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script src="/ts-go-rust/_next/static/chunks/webpack-ca2895bf159c4e7a.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/framework-fc97f3f1282ce3ed.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/main-644608b3fdeed698.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/pages/_app-ca27e81575a7e8b5.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/pages/lessons/%5Bsection%5D/%5Bslug%5D-45325c7c1f030cd9.js" defer=""></script><script src="/ts-go-rust/_next/static/shYjf6s3vWh7Zgh2SM54Y/_buildManifest.js" defer=""></script><script src="/ts-go-rust/_next/static/shYjf6s3vWh7Zgh2SM54Y/_ssgManifest.js" defer=""></script><script src="/ts-go-rust/_next/static/shYjf6s3vWh7Zgh2SM54Y/_middlewareManifest.js" defer=""></script></head><body><div id="__next"><div class="remix-app"><header class="navbar"><h1 class="navbar-brand"><a href="/ts-go-rust">Polyglot Programming - TS, Go, and Rust</a></h1><div class="navbar-info"><a href="https://frontendmasters.com/courses/typescript-go-rust" class="cta-btn">Watch on Frontend Masters</a></div></header><div class="content-container"><div class="main"><div class="lesson-container"><div class="lesson"><div class="lesson-content"><h3 id="some-intro-i-didnt-write">Some intro i didn&#39;t write</h3>
+<p>TODO: the thing we leave in which we never fix</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="we-will-write-it-in-two-phases">We will write it in two phases</h3>
+<ul>
+<li>Saving the data</li>
+<li>The main control file</li>
+</ul>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="the-projector-file">The projector file</h3>
+<p>this is where i feel our good decisions start to compound</p>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">pub</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">save</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Result</span>&lt;()&gt; {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">result</span> = serde_json::<span class="hljs-title function_ invoke__">to_string</span>(&amp;<span class="hljs-keyword">self</span>.data)?;
+    <span class="hljs-comment">// todo... mkdir</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">Some</span>(p) = <span class="hljs-keyword">self</span>.config.config.<span class="hljs-title function_ invoke__">parent</span>() {
+        <span class="hljs-keyword">if</span> std::fs::<span class="hljs-title function_ invoke__">metadata</span>(p).<span class="hljs-title function_ invoke__">is_err</span>() {
+            std::fs::<span class="hljs-title function_ invoke__">create_dir_all</span>(p).<span class="hljs-title function_ invoke__">ok</span>();
+        }
+    }
+
+    std::fs::<span class="hljs-title function_ invoke__">write</span>(&amp;<span class="hljs-keyword">self</span>.config.config, result)?;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Ok</span>(());
+}
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="the-main-file">The main file</h3>
+<p>Tying it all together</p>
+<pre><code class="hljs language-rust"><span class="hljs-keyword">use</span> clap::StructOpt;
+<span class="hljs-keyword">use</span> rust::{opts::ProjectorOpts, config::{ProjectorConfig, Operation}, error::ProjectorError, projector::Projector};
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Result</span>&lt;(), ProjectorError&gt; {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">config</span>: ProjectorConfig = ProjectorOpts::<span class="hljs-title function_ invoke__">parse</span>().<span class="hljs-title function_ invoke__">try_into</span>()?;
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">proj</span> = Projector::<span class="hljs-title function_ invoke__">load_from_disk</span>(&amp;config)?;
+
+    <span class="hljs-keyword">match</span> &amp;config.operation {
+        Operation::<span class="hljs-title function_ invoke__">Add</span>((k, v)) =&gt; {
+            proj.<span class="hljs-title function_ invoke__">set_value</span>(k, v.<span class="hljs-title function_ invoke__">clone</span>());
+            proj.<span class="hljs-title function_ invoke__">save</span>(&amp;config)?;
+        },
+        Operation::<span class="hljs-title function_ invoke__">Print</span>(k) =&gt; {
+            <span class="hljs-keyword">match</span> proj.<span class="hljs-title function_ invoke__">get_value</span>(k) {
+                <span class="hljs-title function_ invoke__">Some</span>(v) =&gt; <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;{}&quot;</span>, v),
+                <span class="hljs-literal">None</span> =&gt; eprintln!(<span class="hljs-string">&quot;key {} not found&quot;</span>, k),
+            }
+        }
+        Operation::<span class="hljs-title function_ invoke__">Remove</span>(k) =&gt; {
+            proj.<span class="hljs-title function_ invoke__">remove_value</span>(k);
+            proj.<span class="hljs-title function_ invoke__">save</span>(&amp;config)?;
+        }
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Ok</span>(());
+}
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="wowza">Wowza!</h3>
+<p>We actually finished!</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+</div><div class="lesson-links"><a href="/ts-go-rust/lessons/tying-it-together/gopher-time" class="prev">← Previous</a><a href="/ts-go-rust/lessons/outro/that-is-it" class="next">Next →</a></div></div><div class="details-bg"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="154" height="154" viewBox="0 0 154 154"><defs><clipPath id="clip-path"><rect id="Rectangle_2238" data-name="Rectangle 2238" width="154" height="154" transform="translate(9467 350)" fill="#fff" stroke="#707070" stroke-width="1"></rect></clipPath><clipPath id="clip-corner-image-active"><rect width="154" height="154"></rect></clipPath></defs><g id="corner-image-active" clip-path="url(#clip-corner-image-active)"><g id="Corner-image-active-2" data-name="Corner-image-active" transform="translate(-9467 -350)" clip-path="url(#clip-path)"><path id="Subtraction_34" data-name="Subtraction 34" d="M-3857.365,1740.766h0l-7.07-7.07,12.89-12.89v14.142l-5.818,5.818Zm-14.142-14.142h0l-7.071-7.07,27.033-27.033v14.143l-19.96,19.96Zm-14.143-14.143h0l-7.07-7.069,41.175-41.175v14.142Zm-14.142-14.142h0l-7.07-7.069,55.317-55.317v14.142Zm-14.142-14.142h0l-7.07-7.069,69.459-69.459v14.142Zm-14.142-14.142h0l-7.07-7.069,76.739-76.739h6.862v7.28Zm-14.143-14.143h0l-7.07-7.069,62.6-62.6h14.142Zm-14.142-14.142h0l-7.07-7.069,48.454-48.454h14.142Zm-14.142-14.142h0l-7.07-7.069,34.312-34.312h14.142Zm-14.142-14.142h0l-7.07-7.069,20.17-20.17h14.142Zm-14.142-14.142h0l-7.071-7.071,6.027-6.027h14.144l-13.1,13.1Zm367.24-56.114v-.909l.455.455-.453.453Z" transform="translate(13472.546 -1236.766)" fill="var(--corner-fill)"></path></g></g></svg></div></div></div></div><footer class="footer"><ul class="socials"><li class="social"><a href="https://twitter.com/theprimeagen"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="32" viewBox="0 0 40 32"><defs><clipPath id="clip-twitter-social"><rect width="40" height="32"></rect></clipPath></defs><g id="twitter-social" clip-path="url(#clip-twitter-social)"><g id="Group_269" data-name="Group 269" transform="translate(-230.23 -1140.849)"><path id="Path_419" data-name="Path 419" d="M266.12,1148.861v1.035a23.092,23.092,0,0,1-1.507,8.1,24.08,24.08,0,0,1-4.475,7.381,22.175,22.175,0,0,1-7.306,5.4,24.129,24.129,0,0,1-10,2.07,23.7,23.7,0,0,1-6.667-.945,22.83,22.83,0,0,1-5.936-2.655q.959.091,1.963.09a16.518,16.518,0,0,0,5.434-.9,17.111,17.111,0,0,0,4.749-2.52,8.275,8.275,0,0,1-4.749-1.643,7.8,7.8,0,0,1-2.877-3.983,8.268,8.268,0,0,0,1.507.135,8.58,8.58,0,0,0,2.146-.27,8.16,8.16,0,0,1-5.685-4.344,8.326,8.326,0,0,1-.89-3.578v-.135a7.775,7.775,0,0,0,3.744,1.035,8.183,8.183,0,0,1-2.671-2.9,7.817,7.817,0,0,1-.982-3.848,7.948,7.948,0,0,1,1.1-4.05,23.53,23.53,0,0,0,16.895,8.46,9.221,9.221,0,0,1-.183-1.845,7.787,7.787,0,0,1,1.1-4.05,8.216,8.216,0,0,1,2.991-2.948,7.991,7.991,0,0,1,4.087-1.1,8.184,8.184,0,0,1,5.982,2.566,16.087,16.087,0,0,0,5.205-1.98,7.784,7.784,0,0,1-1.393,2.588,8.4,8.4,0,0,1-2.215,1.913,16.856,16.856,0,0,0,4.749-1.305A17.032,17.032,0,0,1,266.12,1148.861Z" fill="var(--icons)"></path></g></g></svg></a></li><li class="social"><a href="https://twitch.tv/theprimeagen"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2.149 0l-1.612 4.119v16.836h5.731v3.045h3.224l3.045-3.045h4.657l6.269-6.269v-14.686h-21.314zm19.164 13.612l-3.582 3.582h-5.731l-3.045 3.045v-3.045h-4.836v-15.045h17.194v11.463zm-3.582-7.343v6.262h-2.149v-6.262h2.149zm-5.731 0v6.262h-2.149v-6.262h2.149z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></a></li><li class="social"><a href="https://youtube.com/theprimeagen"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2.149 0l-1.612 4.119v16.836h5.731v3.045h3.224l3.045-3.045h4.657l6.269-6.269v-14.686h-21.314zm19.164 13.612l-3.582 3.582h-5.731l-3.045 3.045v-3.045h-4.836v-15.045h17.194v11.463zm-3.582-7.343v6.262h-2.149v-6.262h2.149zm-5.731 0v6.262h-2.149v-6.262h2.149z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></a></li><li class="social"><div class="terms"><p>Content Licensed Under CC-BY-NC-4.0</p><p>Code Samples and Excercises Licensed Under Apache 2.0</p><p>Site Designed by<!-- --> <!-- --><a href="https://www.alexdanielson.com/">Alex Danielson</a></p></div></li></ul></footer></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"attributes":{"title":"Rust is the bestest","description":"finally back to the best programming ever"},"html":"\u003ch3 id=\"some-intro-i-didnt-write\"\u003eSome intro i didn\u0026#39;t write\u003c/h3\u003e\n\u003cp\u003eTODO: the thing we leave in which we never fix\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"we-will-write-it-in-two-phases\"\u003eWe will write it in two phases\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eSaving the data\u003c/li\u003e\n\u003cli\u003eThe main control file\u003c/li\u003e\n\u003c/ul\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"the-projector-file\"\u003eThe projector file\u003c/h3\u003e\n\u003cp\u003ethis is where i feel our good decisions start to compound\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003epub\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003efn\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003esave\u003c/span\u003e(\u0026amp;\u003cspan class=\"hljs-keyword\"\u003eself\u003c/span\u003e) \u003cspan class=\"hljs-punctuation\"\u003e-\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-type\"\u003eResult\u003c/span\u003e\u0026lt;()\u0026gt; {\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003eresult\u003c/span\u003e = serde_json::\u003cspan class=\"hljs-title function_ invoke__\"\u003eto_string\u003c/span\u003e(\u0026amp;\u003cspan class=\"hljs-keyword\"\u003eself\u003c/span\u003e.data)?;\n    \u003cspan class=\"hljs-comment\"\u003e// todo... mkdir\u003c/span\u003e\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003eSome\u003c/span\u003e(p) = \u003cspan class=\"hljs-keyword\"\u003eself\u003c/span\u003e.config.config.\u003cspan class=\"hljs-title function_ invoke__\"\u003eparent\u003c/span\u003e() {\n        \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e std::fs::\u003cspan class=\"hljs-title function_ invoke__\"\u003emetadata\u003c/span\u003e(p).\u003cspan class=\"hljs-title function_ invoke__\"\u003eis_err\u003c/span\u003e() {\n            std::fs::\u003cspan class=\"hljs-title function_ invoke__\"\u003ecreate_dir_all\u003c/span\u003e(p).\u003cspan class=\"hljs-title function_ invoke__\"\u003eok\u003c/span\u003e();\n        }\n    }\n\n    std::fs::\u003cspan class=\"hljs-title function_ invoke__\"\u003ewrite\u003c/span\u003e(\u0026amp;\u003cspan class=\"hljs-keyword\"\u003eself\u003c/span\u003e.config.config, result)?;\n\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eOk\u003c/span\u003e(());\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"the-main-file\"\u003eThe main file\u003c/h3\u003e\n\u003cp\u003eTying it all together\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-rust\"\u003e\u003cspan class=\"hljs-keyword\"\u003euse\u003c/span\u003e clap::StructOpt;\n\u003cspan class=\"hljs-keyword\"\u003euse\u003c/span\u003e rust::{opts::ProjectorOpts, config::{ProjectorConfig, Operation}, error::ProjectorError, projector::Projector};\n\n\u003cspan class=\"hljs-keyword\"\u003efn\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003emain\u003c/span\u003e() \u003cspan class=\"hljs-punctuation\"\u003e-\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-type\"\u003eResult\u003c/span\u003e\u0026lt;(), ProjectorError\u0026gt; {\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-variable\"\u003econfig\u003c/span\u003e: ProjectorConfig = ProjectorOpts::\u003cspan class=\"hljs-title function_ invoke__\"\u003eparse\u003c/span\u003e().\u003cspan class=\"hljs-title function_ invoke__\"\u003etry_into\u003c/span\u003e()?;\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003emut \u003c/span\u003e\u003cspan class=\"hljs-variable\"\u003eproj\u003c/span\u003e = Projector::\u003cspan class=\"hljs-title function_ invoke__\"\u003eload_from_disk\u003c/span\u003e(\u0026amp;config)?;\n\n    \u003cspan class=\"hljs-keyword\"\u003ematch\u003c/span\u003e \u0026amp;config.operation {\n        Operation::\u003cspan class=\"hljs-title function_ invoke__\"\u003eAdd\u003c/span\u003e((k, v)) =\u0026gt; {\n            proj.\u003cspan class=\"hljs-title function_ invoke__\"\u003eset_value\u003c/span\u003e(k, v.\u003cspan class=\"hljs-title function_ invoke__\"\u003eclone\u003c/span\u003e());\n            proj.\u003cspan class=\"hljs-title function_ invoke__\"\u003esave\u003c/span\u003e(\u0026amp;config)?;\n        },\n        Operation::\u003cspan class=\"hljs-title function_ invoke__\"\u003ePrint\u003c/span\u003e(k) =\u0026gt; {\n            \u003cspan class=\"hljs-keyword\"\u003ematch\u003c/span\u003e proj.\u003cspan class=\"hljs-title function_ invoke__\"\u003eget_value\u003c/span\u003e(k) {\n                \u003cspan class=\"hljs-title function_ invoke__\"\u003eSome\u003c/span\u003e(v) =\u0026gt; \u003cspan class=\"hljs-built_in\"\u003eprintln!\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;{}\u0026quot;\u003c/span\u003e, v),\n                \u003cspan class=\"hljs-literal\"\u003eNone\u003c/span\u003e =\u0026gt; eprintln!(\u003cspan class=\"hljs-string\"\u003e\u0026quot;key {} not found\u0026quot;\u003c/span\u003e, k),\n            }\n        }\n        Operation::\u003cspan class=\"hljs-title function_ invoke__\"\u003eRemove\u003c/span\u003e(k) =\u0026gt; {\n            proj.\u003cspan class=\"hljs-title function_ invoke__\"\u003eremove_value\u003c/span\u003e(k);\n            proj.\u003cspan class=\"hljs-title function_ invoke__\"\u003esave\u003c/span\u003e(\u0026amp;config)?;\n        }\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-title function_ invoke__\"\u003eOk\u003c/span\u003e(());\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"wowza\"\u003eWowza!\u003c/h3\u003e\n\u003cp\u003eWe actually finished!\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n","slug":"rust-4-real","title":"Rust is the bestest","section":"Tying it all together","icon":"dumpster-fire","filePath":"/home/runner/work/ts-go-rust/ts-go-rust/lessons/08-tying-it-together/C-rust-4-real.md","nextSlug":"/ts-go-rust/lessons/outro/that-is-it","prevSlug":"/ts-go-rust/lessons/tying-it-together/gopher-time"}},"__N_SSG":true},"page":"/lessons/[section]/[slug]","query":{"section":"tying-it-together","slug":"rust-4-real"},"buildId":"shYjf6s3vWh7Zgh2SM54Y","assetPrefix":"/ts-go-rust","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

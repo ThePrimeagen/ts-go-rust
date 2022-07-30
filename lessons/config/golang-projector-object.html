@@ -1,0 +1,197 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><title>TypeScript : Projector Object – Polyglot Programming - TS, Go, and Rust</title><meta name="description" content="This course is designed for those that want to expand their knowledge to other languages by building a tool within the new language, and not reading yet another language tutorial.  This will be a fast paced, high octain learning experience."/><meta name="og:description" content="This course is designed for those that want to expand their knowledge to other languages by building a tool within the new language, and not reading yet another language tutorial.  This will be a fast paced, high octain learning experience."/><meta name="og:title" content="TypeScript : Projector Object – Polyglot Programming - TS, Go, and Rust"/><meta name="og:image" content="/ts-go-rust/images/social-share-cover.jpg"/><meta name="twitter:card" content="summary_large_image"/><meta name="next-head-count" content="8"/><link rel="preload" href="/ts-go-rust/_next/static/css/dd3a156ae8df4e80.css" as="style"/><link rel="stylesheet" href="/ts-go-rust/_next/static/css/dd3a156ae8df4e80.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/ts-go-rust/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script src="/ts-go-rust/_next/static/chunks/webpack-ca2895bf159c4e7a.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/framework-fc97f3f1282ce3ed.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/main-644608b3fdeed698.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/pages/_app-ca27e81575a7e8b5.js" defer=""></script><script src="/ts-go-rust/_next/static/chunks/pages/lessons/%5Bsection%5D/%5Bslug%5D-45325c7c1f030cd9.js" defer=""></script><script src="/ts-go-rust/_next/static/shYjf6s3vWh7Zgh2SM54Y/_buildManifest.js" defer=""></script><script src="/ts-go-rust/_next/static/shYjf6s3vWh7Zgh2SM54Y/_ssgManifest.js" defer=""></script><script src="/ts-go-rust/_next/static/shYjf6s3vWh7Zgh2SM54Y/_middlewareManifest.js" defer=""></script></head><body><div id="__next"><div class="remix-app"><header class="navbar"><h1 class="navbar-brand"><a href="/ts-go-rust">Polyglot Programming - TS, Go, and Rust</a></h1><div class="navbar-info"><a href="https://frontendmasters.com/courses/typescript-go-rust" class="cta-btn">Watch on Frontend Masters</a></div></header><div class="content-container"><div class="main"><div class="lesson-container"><div class="lesson"><div class="lesson-content"><h3 id="the-problem-again">The problem (again)</h3>
+<pre><code>   +----------+    +----------+
+   | cli opts | -&gt; | project  | -+-&gt;
+   |  (done)  |    |  config  |  |
+   +----------+    +----------+  |
+                                 |
+                                 +-&gt;
+                                 |
+                                 |
+                                 |
+                                 +-&gt;
+
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h4 id="interested-in-go-vs-typescript">Interested in go vs typescript</h4>
+<p>If you are curious <a href="https://www.youtube.com/watch?v=h7UEwBaGoVo">Go - TS</a>.
+With rust included! <a href="https://www.youtube.com/watch?v=Z0GX2mTUtfo">TS - Go - Rust</a>.</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="lets-build-the-projector-object">Lets build the Projector object</h3>
+<pre><code class="hljs language-bash">src/projector/config.go
+</code></pre>
+<p>LETS BUILD!!!</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h4 id="the-code">The code!</h4>
+<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> projector
+
+<span class="hljs-keyword">import</span> (
+    <span class="hljs-string">&quot;os&quot;</span>
+    <span class="hljs-string">&quot;path&quot;</span>
+)
+
+<span class="hljs-keyword">type</span> Operation = <span class="hljs-type">int</span>
+
+<span class="hljs-keyword">const</span> (
+    Print Operation = <span class="hljs-literal">iota</span>
+    Add
+    Remove
+)
+
+<span class="hljs-keyword">type</span> ProjectorConfig <span class="hljs-keyword">struct</span> {
+    Pwd <span class="hljs-type">string</span> <span class="hljs-comment">// projector --pwd ...</span>
+    Config <span class="hljs-type">string</span> <span class="hljs-comment">// projector --config ...</span>
+    Operation Operation <span class="hljs-comment">// print, add, remove</span>
+    Arguments []<span class="hljs-type">string</span> <span class="hljs-comment">// &lt;key&gt;*, &lt;key&gt; &lt;value&gt;, &lt;key&gt;</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getConfig</span><span class="hljs-params">(config <span class="hljs-type">string</span>)</span></span> (<span class="hljs-type">string</span>, <span class="hljs-type">error</span>) {
+    <span class="hljs-keyword">if</span> config == <span class="hljs-string">&quot;&quot;</span> {
+        configDir, err := os.UserConfigDir()
+        <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span>, err
+        }
+
+        <span class="hljs-keyword">return</span> path.Join(configDir, <span class="hljs-string">&quot;projector&quot;</span>, <span class="hljs-string">&quot;projector.json&quot;</span>), <span class="hljs-literal">nil</span>
+    }
+
+    <span class="hljs-keyword">return</span> config, <span class="hljs-literal">nil</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getPwd</span><span class="hljs-params">(pwd <span class="hljs-type">string</span>)</span></span> (<span class="hljs-type">string</span>, <span class="hljs-type">error</span>) {
+    <span class="hljs-keyword">if</span> pwd == <span class="hljs-string">&quot;&quot;</span> {
+        wd, err := os.Getwd()
+        <span class="hljs-keyword">return</span> wd, err
+    }
+
+    <span class="hljs-keyword">return</span> pwd, <span class="hljs-literal">nil</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">isOperationCommand</span><span class="hljs-params">(op <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">bool</span> {
+    <span class="hljs-keyword">return</span> op == <span class="hljs-string">&quot;add&quot;</span> || op == <span class="hljs-string">&quot;rm&quot;</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getArguments</span><span class="hljs-params">(commands []<span class="hljs-type">string</span>)</span></span> []<span class="hljs-type">string</span> {
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">len</span>(commands) &gt; <span class="hljs-number">0</span> &amp;&amp; isOperationCommand(commands[<span class="hljs-number">0</span>])) {
+        <span class="hljs-keyword">return</span> commands[<span class="hljs-number">1</span>:]
+    }
+
+    <span class="hljs-keyword">return</span> commands
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getOperation</span><span class="hljs-params">(commands []<span class="hljs-type">string</span>)</span></span> Operation {
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(commands) == <span class="hljs-number">0</span> {
+        <span class="hljs-keyword">return</span> Add
+    }
+
+    <span class="hljs-keyword">switch</span> (commands[<span class="hljs-number">0</span>]) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;add&quot;</span>: <span class="hljs-keyword">return</span> Add
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;rm&quot;</span>: <span class="hljs-keyword">return</span> Remove
+    }
+    <span class="hljs-keyword">return</span> Print
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewProjectorConfig</span><span class="hljs-params">(opts *ProjectorOpts)</span></span> (*ProjectorConfig, <span class="hljs-type">error</span>) {
+    pwd, err := getPwd(opts.Pwd)
+    <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, err
+    }
+
+    config, err := getConfig(opts.Config)
+    <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>, err
+    }
+
+    <span class="hljs-keyword">return</span> &amp;ProjectorConfig {
+        Operation: getOperation(opts.Arguments),
+        Arguments: getArguments(opts.Arguments),
+        Pwd: pwd,
+        Config: config,
+    }, <span class="hljs-literal">nil</span>
+}
+</code></pre>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h3 id="onto-the-lords-language">Onto the Lords language</h3>
+<p>no i am not talking about Php</p>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+</div><div class="lesson-links"><a href="/ts-go-rust/lessons/config/typescript-projector-object" class="prev">← Previous</a><a href="/ts-go-rust/lessons/config/rust-projector-object" class="next">Next →</a></div></div><div class="details-bg"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="154" height="154" viewBox="0 0 154 154"><defs><clipPath id="clip-path"><rect id="Rectangle_2238" data-name="Rectangle 2238" width="154" height="154" transform="translate(9467 350)" fill="#fff" stroke="#707070" stroke-width="1"></rect></clipPath><clipPath id="clip-corner-image-active"><rect width="154" height="154"></rect></clipPath></defs><g id="corner-image-active" clip-path="url(#clip-corner-image-active)"><g id="Corner-image-active-2" data-name="Corner-image-active" transform="translate(-9467 -350)" clip-path="url(#clip-path)"><path id="Subtraction_34" data-name="Subtraction 34" d="M-3857.365,1740.766h0l-7.07-7.07,12.89-12.89v14.142l-5.818,5.818Zm-14.142-14.142h0l-7.071-7.07,27.033-27.033v14.143l-19.96,19.96Zm-14.143-14.143h0l-7.07-7.069,41.175-41.175v14.142Zm-14.142-14.142h0l-7.07-7.069,55.317-55.317v14.142Zm-14.142-14.142h0l-7.07-7.069,69.459-69.459v14.142Zm-14.142-14.142h0l-7.07-7.069,76.739-76.739h6.862v7.28Zm-14.143-14.143h0l-7.07-7.069,62.6-62.6h14.142Zm-14.142-14.142h0l-7.07-7.069,48.454-48.454h14.142Zm-14.142-14.142h0l-7.07-7.069,34.312-34.312h14.142Zm-14.142-14.142h0l-7.07-7.069,20.17-20.17h14.142Zm-14.142-14.142h0l-7.071-7.071,6.027-6.027h14.144l-13.1,13.1Zm367.24-56.114v-.909l.455.455-.453.453Z" transform="translate(13472.546 -1236.766)" fill="var(--corner-fill)"></path></g></g></svg></div></div></div></div><footer class="footer"><ul class="socials"><li class="social"><a href="https://twitter.com/theprimeagen"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="32" viewBox="0 0 40 32"><defs><clipPath id="clip-twitter-social"><rect width="40" height="32"></rect></clipPath></defs><g id="twitter-social" clip-path="url(#clip-twitter-social)"><g id="Group_269" data-name="Group 269" transform="translate(-230.23 -1140.849)"><path id="Path_419" data-name="Path 419" d="M266.12,1148.861v1.035a23.092,23.092,0,0,1-1.507,8.1,24.08,24.08,0,0,1-4.475,7.381,22.175,22.175,0,0,1-7.306,5.4,24.129,24.129,0,0,1-10,2.07,23.7,23.7,0,0,1-6.667-.945,22.83,22.83,0,0,1-5.936-2.655q.959.091,1.963.09a16.518,16.518,0,0,0,5.434-.9,17.111,17.111,0,0,0,4.749-2.52,8.275,8.275,0,0,1-4.749-1.643,7.8,7.8,0,0,1-2.877-3.983,8.268,8.268,0,0,0,1.507.135,8.58,8.58,0,0,0,2.146-.27,8.16,8.16,0,0,1-5.685-4.344,8.326,8.326,0,0,1-.89-3.578v-.135a7.775,7.775,0,0,0,3.744,1.035,8.183,8.183,0,0,1-2.671-2.9,7.817,7.817,0,0,1-.982-3.848,7.948,7.948,0,0,1,1.1-4.05,23.53,23.53,0,0,0,16.895,8.46,9.221,9.221,0,0,1-.183-1.845,7.787,7.787,0,0,1,1.1-4.05,8.216,8.216,0,0,1,2.991-2.948,7.991,7.991,0,0,1,4.087-1.1,8.184,8.184,0,0,1,5.982,2.566,16.087,16.087,0,0,0,5.205-1.98,7.784,7.784,0,0,1-1.393,2.588,8.4,8.4,0,0,1-2.215,1.913,16.856,16.856,0,0,0,4.749-1.305A17.032,17.032,0,0,1,266.12,1148.861Z" fill="var(--icons)"></path></g></g></svg></a></li><li class="social"><a href="https://twitch.tv/theprimeagen"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2.149 0l-1.612 4.119v16.836h5.731v3.045h3.224l3.045-3.045h4.657l6.269-6.269v-14.686h-21.314zm19.164 13.612l-3.582 3.582h-5.731l-3.045 3.045v-3.045h-4.836v-15.045h17.194v11.463zm-3.582-7.343v6.262h-2.149v-6.262h2.149zm-5.731 0v6.262h-2.149v-6.262h2.149z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></a></li><li class="social"><a href="https://youtube.com/theprimeagen"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2.149 0l-1.612 4.119v16.836h5.731v3.045h3.224l3.045-3.045h4.657l6.269-6.269v-14.686h-21.314zm19.164 13.612l-3.582 3.582h-5.731l-3.045 3.045v-3.045h-4.836v-15.045h17.194v11.463zm-3.582-7.343v6.262h-2.149v-6.262h2.149zm-5.731 0v6.262h-2.149v-6.262h2.149z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></a></li><li class="social"><div class="terms"><p>Content Licensed Under CC-BY-NC-4.0</p><p>Code Samples and Excercises Licensed Under Apache 2.0</p><p>Site Designed by<!-- --> <!-- --><a href="https://www.alexdanielson.com/">Alex Danielson</a></p></div></li></ul></footer></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":{"attributes":{"title":"TypeScript : Projector Object","description":"The projector object will contain the operations"},"html":"\u003ch3 id=\"the-problem-again\"\u003eThe problem (again)\u003c/h3\u003e\n\u003cpre\u003e\u003ccode\u003e   +----------+    +----------+\n   | cli opts | -\u0026gt; | project  | -+-\u0026gt;\n   |  (done)  |    |  config  |  |\n   +----------+    +----------+  |\n                                 |\n                                 +-\u0026gt;\n                                 |\n                                 |\n                                 |\n                                 +-\u0026gt;\n\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch4 id=\"interested-in-go-vs-typescript\"\u003eInterested in go vs typescript\u003c/h4\u003e\n\u003cp\u003eIf you are curious \u003ca href=\"https://www.youtube.com/watch?v=h7UEwBaGoVo\"\u003eGo - TS\u003c/a\u003e.\nWith rust included! \u003ca href=\"https://www.youtube.com/watch?v=Z0GX2mTUtfo\"\u003eTS - Go - Rust\u003c/a\u003e.\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"lets-build-the-projector-object\"\u003eLets build the Projector object\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-bash\"\u003esrc/projector/config.go\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eLETS BUILD!!!\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch4 id=\"the-code\"\u003eThe code!\u003c/h4\u003e\n\u003cpre\u003e\u003ccode class=\"hljs language-go\"\u003e\u003cspan class=\"hljs-keyword\"\u003epackage\u003c/span\u003e projector\n\n\u003cspan class=\"hljs-keyword\"\u003eimport\u003c/span\u003e (\n    \u003cspan class=\"hljs-string\"\u003e\u0026quot;os\u0026quot;\u003c/span\u003e\n    \u003cspan class=\"hljs-string\"\u003e\u0026quot;path\u0026quot;\u003c/span\u003e\n)\n\n\u003cspan class=\"hljs-keyword\"\u003etype\u003c/span\u003e Operation = \u003cspan class=\"hljs-type\"\u003eint\u003c/span\u003e\n\n\u003cspan class=\"hljs-keyword\"\u003econst\u003c/span\u003e (\n    Print Operation = \u003cspan class=\"hljs-literal\"\u003eiota\u003c/span\u003e\n    Add\n    Remove\n)\n\n\u003cspan class=\"hljs-keyword\"\u003etype\u003c/span\u003e ProjectorConfig \u003cspan class=\"hljs-keyword\"\u003estruct\u003c/span\u003e {\n    Pwd \u003cspan class=\"hljs-type\"\u003estring\u003c/span\u003e \u003cspan class=\"hljs-comment\"\u003e// projector --pwd ...\u003c/span\u003e\n    Config \u003cspan class=\"hljs-type\"\u003estring\u003c/span\u003e \u003cspan class=\"hljs-comment\"\u003e// projector --config ...\u003c/span\u003e\n    Operation Operation \u003cspan class=\"hljs-comment\"\u003e// print, add, remove\u003c/span\u003e\n    Arguments []\u003cspan class=\"hljs-type\"\u003estring\u003c/span\u003e \u003cspan class=\"hljs-comment\"\u003e// \u0026lt;key\u0026gt;*, \u0026lt;key\u0026gt; \u0026lt;value\u0026gt;, \u0026lt;key\u0026gt;\u003c/span\u003e\n}\n\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003efunc\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003egetConfig\u003c/span\u003e\u003cspan class=\"hljs-params\"\u003e(config \u003cspan class=\"hljs-type\"\u003estring\u003c/span\u003e)\u003c/span\u003e\u003c/span\u003e (\u003cspan class=\"hljs-type\"\u003estring\u003c/span\u003e, \u003cspan class=\"hljs-type\"\u003eerror\u003c/span\u003e) {\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e config == \u003cspan class=\"hljs-string\"\u003e\u0026quot;\u0026quot;\u003c/span\u003e {\n        configDir, err := os.UserConfigDir()\n        \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e err != \u003cspan class=\"hljs-literal\"\u003enil\u003c/span\u003e {\n            \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-string\"\u003e\u0026quot;\u0026quot;\u003c/span\u003e, err\n        }\n\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e path.Join(configDir, \u003cspan class=\"hljs-string\"\u003e\u0026quot;projector\u0026quot;\u003c/span\u003e, \u003cspan class=\"hljs-string\"\u003e\u0026quot;projector.json\u0026quot;\u003c/span\u003e), \u003cspan class=\"hljs-literal\"\u003enil\u003c/span\u003e\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e config, \u003cspan class=\"hljs-literal\"\u003enil\u003c/span\u003e\n}\n\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003efunc\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003egetPwd\u003c/span\u003e\u003cspan class=\"hljs-params\"\u003e(pwd \u003cspan class=\"hljs-type\"\u003estring\u003c/span\u003e)\u003c/span\u003e\u003c/span\u003e (\u003cspan class=\"hljs-type\"\u003estring\u003c/span\u003e, \u003cspan class=\"hljs-type\"\u003eerror\u003c/span\u003e) {\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e pwd == \u003cspan class=\"hljs-string\"\u003e\u0026quot;\u0026quot;\u003c/span\u003e {\n        wd, err := os.Getwd()\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e wd, err\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e pwd, \u003cspan class=\"hljs-literal\"\u003enil\u003c/span\u003e\n}\n\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003efunc\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eisOperationCommand\u003c/span\u003e\u003cspan class=\"hljs-params\"\u003e(op \u003cspan class=\"hljs-type\"\u003estring\u003c/span\u003e)\u003c/span\u003e\u003c/span\u003e \u003cspan class=\"hljs-type\"\u003ebool\u003c/span\u003e {\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e op == \u003cspan class=\"hljs-string\"\u003e\u0026quot;add\u0026quot;\u003c/span\u003e || op == \u003cspan class=\"hljs-string\"\u003e\u0026quot;rm\u0026quot;\u003c/span\u003e;\n}\n\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003efunc\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003egetArguments\u003c/span\u003e\u003cspan class=\"hljs-params\"\u003e(commands []\u003cspan class=\"hljs-type\"\u003estring\u003c/span\u003e)\u003c/span\u003e\u003c/span\u003e []\u003cspan class=\"hljs-type\"\u003estring\u003c/span\u003e {\n\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e (\u003cspan class=\"hljs-built_in\"\u003elen\u003c/span\u003e(commands) \u0026gt; \u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e \u0026amp;\u0026amp; isOperationCommand(commands[\u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e])) {\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e commands[\u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e:]\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e commands\n}\n\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003efunc\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003egetOperation\u003c/span\u003e\u003cspan class=\"hljs-params\"\u003e(commands []\u003cspan class=\"hljs-type\"\u003estring\u003c/span\u003e)\u003c/span\u003e\u003c/span\u003e Operation {\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e \u003cspan class=\"hljs-built_in\"\u003elen\u003c/span\u003e(commands) == \u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e {\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e Add\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003eswitch\u003c/span\u003e (commands[\u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e]) {\n    \u003cspan class=\"hljs-keyword\"\u003ecase\u003c/span\u003e \u003cspan class=\"hljs-string\"\u003e\u0026quot;add\u0026quot;\u003c/span\u003e: \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e Add\n    \u003cspan class=\"hljs-keyword\"\u003ecase\u003c/span\u003e \u003cspan class=\"hljs-string\"\u003e\u0026quot;rm\u0026quot;\u003c/span\u003e: \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e Remove\n    }\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e Print\n}\n\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003efunc\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eNewProjectorConfig\u003c/span\u003e\u003cspan class=\"hljs-params\"\u003e(opts *ProjectorOpts)\u003c/span\u003e\u003c/span\u003e (*ProjectorConfig, \u003cspan class=\"hljs-type\"\u003eerror\u003c/span\u003e) {\n    pwd, err := getPwd(opts.Pwd)\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e err != \u003cspan class=\"hljs-literal\"\u003enil\u003c/span\u003e {\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-literal\"\u003enil\u003c/span\u003e, err\n    }\n\n    config, err := getConfig(opts.Config)\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e err != \u003cspan class=\"hljs-literal\"\u003enil\u003c/span\u003e {\n        \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"hljs-literal\"\u003enil\u003c/span\u003e, err\n    }\n\n    \u003cspan class=\"hljs-keyword\"\u003ereturn\u003c/span\u003e \u0026amp;ProjectorConfig {\n        Operation: getOperation(opts.Arguments),\n        Arguments: getArguments(opts.Arguments),\n        Pwd: pwd,\n        Config: config,\n    }, \u003cspan class=\"hljs-literal\"\u003enil\u003c/span\u003e\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n\u003ch3 id=\"onto-the-lords-language\"\u003eOnto the Lords language\u003c/h3\u003e\n\u003cp\u003eno i am not talking about Php\u003c/p\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\u003cbr /\u003e\n\n","slug":"golang-projector-object","title":"TypeScript : Projector Object","section":"The Projector object","icon":"dumpster-fire","filePath":"/home/runner/work/ts-go-rust/ts-go-rust/lessons/05-config/B-golang-projector-object.md","nextSlug":"/ts-go-rust/lessons/config/rust-projector-object","prevSlug":"/ts-go-rust/lessons/config/typescript-projector-object"}},"__N_SSG":true},"page":"/lessons/[section]/[slug]","query":{"section":"config","slug":"golang-projector-object"},"buildId":"shYjf6s3vWh7Zgh2SM54Y","assetPrefix":"/ts-go-rust","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
